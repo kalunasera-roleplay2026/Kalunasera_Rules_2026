@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="id" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Server Rules & Breakrules - Kalunasera Roleplay</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            900: '#0b0f19',
+                            800: '#111827',
+                            700: '#1f2937',
+                            600: '#374151'
+                        },
+                        brand: {
+                            500: '#6366f1',
+                            600: '#4f46e5'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Inter & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0b0f19; }
+        ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4b5563; }
+    </style>
+</head>
+<body class="bg-dark-900 text-gray-100 min-h-screen flex flex-col antialiased selection:bg-indigo-500 selection:text-white">
+
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-50 bg-dark-800/80 backdrop-blur-md border-b border-gray-800 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <button id="sidebar-toggle" class="md:hidden text-gray-400 hover:text-white p-2 focus:outline-none">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center shadow-lg shadow-indigo-500/30">
+                        <i class="fa-solid fa-shield-halved text-white text-lg"></i>
+                    </div>
+                    <div>
+                        <span class="text-xs uppercase tracking-widest text-indigo-400 font-semibold block">SA-MP Server Rules</span>
+                        <h1 class="text-lg font-bold text-white tracking-wide">Kalunasera Roleplay</h1>
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span class="hidden sm:inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse mr-2"></span> Server Status: Active
+                </span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="flex-1 max-w-7xl w-full mx-auto flex flex-col md:flex-row relative">
+        
+        <!-- Sidebar Backdrop for Mobile -->
+        <div id="sidebar-backdrop" class="fixed inset-0 bg-black/60 z-30 hidden md:hidden transition-opacity"></div>
+
+        <!-- Sidebar Navigation -->
+        <aside id="sidebar" class="fixed md:sticky top-16 z-40 h-[calc(100vh-4rem)] w-72 bg-dark-800 border-r border-gray-800 flex flex-col transition-transform duration-300 transform -translate-x-full md:translate-x-0 overflow-y-auto">
+            <div class="p-4 border-b border-gray-800">
+                <div class="relative">
+                    <i class="fa-solid fa-search absolute left-3 top-3 text-gray-400 text-sm"></i>
+                    <input type="text" id="search-input" placeholder="Cari pasal atau sanksi..." class="w-full bg-dark-900 border border-gray-700 rounded-xl pl-9 pr-4 py-2 text-sm text-gray-200 placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-colors">
+                </div>
+            </div>
+            <nav id="chapter-nav" class="flex-1 p-4 space-y-1 overflow-y-auto">
+                <!-- Populated dynamically via JS -->
+            </nav>
+            <div class="p-4 border-t border-gray-800 text-xs text-gray-500 text-center">
+                Kalunasera RP &copy; 2026. All Rights Reserved.
+            </div>
+        </aside>
+
+        <!-- Content Area -->
+        <main class="flex-1 p-4 sm:p-6 lg:p-8 min-w-0">
+            <!-- Hero Banner -->
+            <div class="bg-gradient-to-r from-indigo-900/40 via-purple-900/20 to-dark-800 border border-indigo-500/20 rounded-2xl p-6 sm:p-8 mb-8 shadow-xl">
+                <div class="max-w-3xl">
+                    <span class="text-xs uppercase font-bold tracking-wider text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/30">Official Documentation</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-3 mb-2">Panduan Breakrules & Sanksi</h2>
+                    <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+                        Dokumen resmi tata tertib bermain di Kalunasera Roleplay. Setiap pemain wajib mematuhi seluruh aturan dari Bab I hingga Bab XIII demi menciptakan lingkungan roleplay yang adil, imersif, dan berkualitas tinggi.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Quick Filter Badges -->
+            <div class="flex flex-wrap items-center gap-2 mb-6" id="filter-badges">
+                <span class="text-xs font-semibold text-gray-400 mr-2"><i class="fa-solid fa-filter mr-1"></i> Filter Sanksi:</span>
+                <button onclick="filterByPunishment('all')" class="px-3 py-1 rounded-lg text-xs font-medium bg-indigo-600 text-white transition-all filter-btn active" data-filter="all">Semua</button>
+                <button onclick="filterByPunishment('ringan')" class="px-3 py-1 rounded-lg text-xs font-medium bg-dark-800 text-yellow-400 border border-yellow-500/30 hover:bg-yellow-500/10 transition-all filter-btn" data-filter="ringan">Ringan / Peringatan</button>
+                <button onclick="filterByPunishment('sedang')" class="px-3 py-1 rounded-lg text-xs font-medium bg-dark-800 text-orange-400 border border-orange-500/30 hover:bg-orange-500/10 transition-all filter-btn" data-filter="sedang">Sedang (Jail/Temp Ban)</button>
+                <button onclick="filterByPunishment('berat')" class="px-3 py-1 rounded-lg text-xs font-medium bg-dark-800 text-red-400 border border-red-500/30 hover:bg-red-500/10 transition-all filter-btn" data-filter="berat">Berat</button>
+                <button onclick="filterByPunishment('permanen')" class="px-3 py-1 rounded-lg text-xs font-medium bg-dark-800 text-purple-400 border border-purple-500/30 hover:bg-purple-500/10 transition-all filter-btn" data-filter="permanen">Permanen / Ban Evader</button>
+            </div>
+
+            <!-- Rules Container -->
+            <div id="rules-container" class="space-y-10">
+                <!-- Dynamically rendered chapters & articles -->
+            </div>
+
+            <!-- Empty Search State -->
+            <div id="empty-state" class="hidden text-center py-16 bg-dark-800/40 rounded-2xl border border-gray-800 mt-6">
+                <i class="fa-solid fa-triangle-exclamation text-4xl text-gray-500 mb-3"></i>
+                <h3 class="text-lg font-bold text-gray-300">Pasal Tidak Ditemukan</h3>
+                <p class="text-sm text-gray-500 mt-1">Coba gunakan kata kunci pencarian yang lain.</p>
+            </div>
+        </main>
+    </div>
+
+    <!-- Application Script -->
+    <script>
+        const rulesData = [
+            {
+                chapter: "BAB I: ASAS DASAR & IN-GAME IDENTITY",
+                id: "bab-1",
+                articles: [
+                    {
+                        number: "Pasal 1",
+                        title: "Penamaan Karakter (Character Name)",
+                        desc: "Nama karakter wajib menggunakan format nama nyata yang realistis (Firstname_Lastname), contoh: John_Doe. Dilarang keras menggunakan nama tokoh terkenal/fiktif populer, nama publik figur, nama vulgar, atau nama yang mengandung unsur SARA.",
+                        punishmentType: "ringan",
+                        punishmentText: "Pertama: Peringatan lisan & diminta mengganti nama (/changename). Kedua: Temporary Ban (1 hari) jika menolak mengganti nama."
+                    },
+                    {
+                        number: "Pasal 2",
+                        title: "Perilaku Dasar In-Character (IC) & Out-of-Character (OOC)",
+                        desc: "Pemain harus menyadari batasan jelas antara In-Character (IC) (segala hal yang berhubungan dengan dunia game/karakter) dan Out-of-Character (OOC) (dunia nyata pemain). Konflik yang terjadi di dalam IC tidak boleh dibawa ke OOC, dan sebaliknya.",
+                        punishmentType: "sedang",
+                        punishmentText: "Pertama: Jail OOC (30 menit) karena membawa masalah IC ke OOC. Kedua: Temporary Ban (3 hari) hingga Permanent Ban jika melakukan provokasi berat."
+                    },
+                    {
+                        number: "Pasal 3",
+                        title: "Kewajiban Menghormati Komunitas",
+                        desc: "Seluruh pemain wajib saling menghormati di saluran komunikasi OOC (OOC Chat, Discord, Forum Kalunasera Roleplay). Dilarang melakukan ujaran kebencian, harassment, doxxing, atau tindakan cyberbullying terhadap sesama pemain maupun staf.",
+                        punishmentType: "berat",
+                        punishmentText: "Pertama: Mute chat / Discord selama 24 jam. Kedua: Temporary Ban (3-7 hari). Ketiga: Permanent Ban untuk kasus pelecehan berat / doxxing."
+                    }
+                ]
+            },
+            {
+                chapter: "BAB II: PELANGGARAN KONTROL & REALISME PERMAINAN",
+                id: "bab-2",
+                articles: [
+                    {
+                        number: "Pasal 1",
+                        title: "Powergaming (PG)",
+                        desc: "Dilarang melakukan tindakan yang tidak manusiawi, tidak masuk akal, atau melanggar hukum fisika di dunia nyata. Dilarang memaksakan aksi RP kepada pemain lain tanpa memberi mereka kesempatan untuk merespons melalui command RP (/me dan /do).",
+                        punishmentType: "sedang",
+                        punishmentText: "Pertama: Jail OOC (30 - 45 menit). Kedua: Temporary Ban (1 - 3 hari) jika terbukti sering melanggar berulang kali."
+                    },
+                    {
+                        number: "Pasal 2",
+                        title: "Metagaming (MG)",
+                        desc: "Dilarang menyalahgunakan informasi OOC untuk kepentingan IC (contoh: menggunakan informasi dari Discord, livestream, atau nametag untuk keuntungan karakter). Segala komunikasi dalam urusan RP wajib melalui media IC.",
+                        punishmentType: "sedang",
+                        punishmentText: "Pertama: Jail OOC (45 menit). Kedua: Temporary Ban (3 hari) jika merugikan pihak lain secara masif."
+                    },
+                    {
+                        number: "Pasal 3",
+                        title: "Chicken Running & Bunnyhop (BH/CR)",
+                        desc: "Bunnyhop: Dilarang melompat-lompat secara terus-menerus saat berlari hanya untuk mendapatkan kecepatan ekstra. Chicken Running: Dilarang berlari zigzag secara tidak wajar saat situasi tembak-menembak.",
+                        punishmentType: "ringan",
+                        punishmentText: "Pertama: Peringatan lisan / Jail OOC (15 menit). Kedua: Jail OOC (30 menit) jika mengulangi saat situasi roleplay penting."
+                    }
+                ]
+            },
+            {
+                chapter: "BAB III: PELANGGARAN KEKERASAN & PENGGUNAAN KENDARAAN",
+                id: "bab-3",
+                articles: [
+                    {
+                        number: "Pasal 1",
+                        title: "Deathmatching (DM)",
+                        desc: "Dilarang membunuh atau menyerang pemain lain tanpa alasan RP yang jelas, kuat, dan melatarbelakanginya. Setiap aksi pembunuhan wajib didasari oleh alur cerita (storyline) yang valid.",
+                        punishmentType: "berat",
+                        punishmentText: "Pertama: Jail OOC (60 menit). Kedua: Temporary Ban (3 - 7 hari) jika menyebabkan kerugian besar / mass DM."
+                    },
+                    {
+                        number: "Pasal 2",
+                        title: "Vehicle Deathmatching (VDM) & Car Ramming",
+                        desc: "VDM: Dilarang menabrakkan kendaraan secara sengaja ke pemain lain hingga tewas/luka tanpa alasan RP. Car Ramming: Dilarang menabrak kendaraan lain secara terus-menerus tanpa memedulikan tingkat kerusakan.",
+                        punishmentType: "sedang",
+                        punishmentText: "Pertama: Jail OOC (45 menit) + pencabutan surat izin mengemudi (IC). Kedua: Temporary Ban (3 hari)."
+                    },
+                    {
+                        number: "Pasal 3",
+                        title: "Car Jacking (CJ)",
+                        desc: "Dilarang merebut atau mencuri kendaraan pemain lain secara tiba-tiba tanpa menggunakan roleplay command (/me dan /do) yang memadai.",
+                        punishmentType: "ringan",
+                        punishmentText: "Pertama: Jail OOC (20 menit). Kedua: Jail OOC (45 menit) jika berulang."
+                    }
+                ]
+            },
+            {
+                chapter: "BAB IV: INTERAKSI HUKUM & NYAWA KARAKTER",
+                id: "bab-4",
+                articles: [
+                    {
+                        number: "Pasal 1",
+                        title: "Non-RP Fear (NRP Fear)",
+                        desc: "Setiap pemain wajib menyimulasikan rasa takut atas nyawa karakternya ketika berada di bawah ancaman berat (contoh: ditodong senjata api oleh beberapa orang). Dilarang melakukan aksi nekat yang mengabaikan keselamatan jiwa.",
+                        punishmentType: "sedang",
+                        punishmentText: "Pertama: Jail OOC (45 menit). Kedua: Temporary Ban (2 - 5 hari)."
+                    },
+                    {
+                        number: "Pasal 2",
+                        title: "Player Kill (PK) & Character Kill (CK)",
+                        desc: "Player Kill (PK): Saat karakter Anda tewas secara IC, Anda akan lupa kejadian/ingatan penyebab kematian. Character Kill (CK): Kematian permanen karakter harus disetujui melalui prosedur administratif/forum.",
+                        punishmentType: "berat",
+                        punishmentText: "Pertama: Jail OOC (30 menit) jika melanggar memori PK (revenge killing). Kedua: Force-CK administratif oleh Staff."
+                    },
+                    {
+                        number: "Pasal 3",
+                        title: "Non-RP Save (Logging to Avoid RP)",
+                        desc: "Dilarang keluar dari permainan (logout / q) secara sengaja untuk menghindari situasi RP yang sedang berlangsung (seperti saat dikejar polisi, dirampok, atau ditahan).",
+                        punishmentType: "berat",
+                        punishmentText: "Pertama: Jail OOC (60 menit) + rollback aset/situasi. Kedua: Temporary Ban (3 - 7 hari)."
+                    }
+                ]
+            },
+            {
+                chapter: "BAB V: KRIMINALITAS & SPESIFIKASI PERAMPOKAN (ROBBERY RULES)",
+                id: "bab-5",
+                articles: [
+                    {
+                        number: "Pasal 1",
+                        title: "Perampokan Toko / Warung & Fasilitas Kecil (Store Robbery)",
+                        desc: "Perampokan toko kecil/warung wajib memenuhi jumlah minimal pelaku dan minimal polisi on duty sesuai sistem. Dilarang merampok toko yang sama berturut-turut dalam waktu cooldown.",
+                        punishmentType: "sedang",
+                        punishmentText: "Pertama: Jail OOC (45 menit) + pembatalan hasil rampokan. Kedua: Temporary Ban (2 - 3 hari)."
+                    },
+                    {
+                        number: "Pasal 2",
+                        title: "Perampokan Bank Besar & Institusi Keuangan (Major Bank Robbery)",
+                        desc: "Perampokan Bank Sentral/Besar wajib melibatkan faksi kepolisian dalam skala besar dan perencanaan roleplay matang. Dilarang menggunakan trik non-RP saat negosiasi sandera.",
+                        punishmentType: "berat",
+                        punishmentText: "Pertama: Jail OOC (90 menit) + penyitaan barang bukti. Kedua: Temporary Ban (3 - 7 hari)."
+                    },
+                    {
+                        number: "Pasal 3",
+                        title: "Perampokan Individu & Batasan Korban Sipil (Civilian Robbery Limits)",
+                        desc: "Dilarang merampok pemain baru (newbie) atau yang sedang bekerja pada pekerjaan resmi (sidejob negara). Terdapat batasan maksimal nominal uang/barang yang diambil.",
+                        punishmentType: "sedang",
+                        punishmentText: "Pertama: Jail OOC (45 menit) + pengembalian penuh barang korban. Kedua: Temporary Ban (3 hari)."
+                    }
+                ]
+            },
+            {
+                chapter: "BAB VI: FRAKSI, ORG, & PEKERJAAN (FACTIONS)",
+                id: "bab-6",
+                articles: [
+                    {
+                        number: "Pasal 1",
+                        title: "Tata Tertib Anggota Fraksi Legal",
+                        desc: "Anggota fraksi legal (Police, EMS, Government) wajib menjunjung tinggi profesionalisme, dilarang menyalahgunakan wewenang (abuse power), dan dilarang membagikan senjata dinas ke sipil.",
+                        punishmentType: "berat",
+                        punishmentText: "Pertama: Pemecatan fraksi (Faction Kick) + Jail OOC (60 menit). Kedua: Temporary Ban (3 - 7 hari)."
+                    },
+                    {
+                        number: "Pasal 2",
+                        title: "Peperangan Antar-Geng / Malafide (Gang War)",
+                        desc: "Peperangan antar-geng harus memiliki alasan storyline yang sah, dilaporkan ke Admin, dan dilarang melakukan spawn killing di markas turf/HQ lawan.",
+                        punishmentType: "berat",
+                        punishmentText: "Pertama: Jail OOC (60 menit) bagi pelaku. Kedua: Pencabutan status resmi organisasi/geng di server."
+                    },
+                    {
+                        number: "Pasal 3",
+                        title: "Corruption Rules",
+                        desc: "Aksi korupsi oleh anggota fraksi legal hanya diperbolehkan jika mendapatkan persetujuan (approval) resmi dari High Admin Kalunasera Roleplay.",
+                        punishmentType: "berat",
+                        punishmentText: "Pertama: Pemecatan instan dari fraksi + Jail OOC (90 menit). Kedua: Temporary Ban (5 hari)."
+                    }
+                ]
+            },
+            {
+                chapter: "BAB VII: PENGGUNAAN FITUR & EKSPLOITASI (EXPLOITING)",
+                id: "bab-7",
+                articles: [
+                    {
+                        number: "Pasal 1",
+                        title: "Bug Using & Abuse Feature",
+                        desc: "Dilarang keras memanfaatkan kutu sistem (bug), celah server, atau fitur game untuk keuntungan pribadi secara tidak sah. Wajib melaporkan bug segera ke staff.",
+                        punishmentType: "berat",
+                        punishmentText: "Pertama: Jail OOC (90 menit) / Rollback keuntungan bug. Kedua: Temporary Ban (7 hari) hingga Permanent Ban."
+                    },
+                    {
+                        number: "Pasal 2",
+                        title: "Third-Party Programs (Third-Party Software / Cheating)",
+                        desc: "Dilarang keras menggunakan program pihak ketiga ilegal, modifikasi berbahaya, cheat, aimbot, wallhack, atau modifikasi yang memberikan keunggulan tidak adil.",
+                        punishmentType: "permanen",
+                        punishmentText: "Permanent Ban (Pemblokiran akun selamanya secara mutlak tanpa toleransi)."
+                    },
+                    {
+                        number: "Pasal 3",
+                        title: "Evading Punishment",
+                        desc: "Dilarang membuat akun baru, menggunakan VPN, atau mengubah IP untuk menghindari sanksi atau hukuman yang sedang aktif (Ban Evading).",
+                        punishmentType: "permanen",
+                        punishmentText: "Permanent Ban pada seluruh akun terkait & Hardware/IP Blacklist."
+                    }
+                ]
+            },
+            {
+                chapter: "BAB VIII: EKONOMI & TRANSAKSI",
+                id: "bab-8",
+                articles: [
+                    {
+                        number: "Pasal 1",
+                        title: "Real Money Trading (RMT)",
+                        desc: "Dilarang keras melakukan transaksi jual-beli aset in-game (uang IC, kendaraan, rumah, akun) menggunakan mata uang dunia nyata.",
+                        punishmentType: "permanen",
+                        punishmentText: "Permanent Ban untuk seluruh pihak yang terlibat transaksi RMT."
+                    },
+                    {
+                        number: "Pasal 2",
+                        title: "Account Sharing & Multi-Accounting",
+                        desc: "Dilarang membagikan detail akun ke orang lain atau membuat akun ganda demi memindahkan harta atau keuntungan ke akun utama (asset transferring).",
+                        punishmentType: "berat",
+                        punishmentText: "Pertama: Temporary Ban (7 hari) + penyitaan aset hasil transfer. Kedua: Permanent Ban."
+                    },
+                    {
+                        number: "Pasal 3",
+                        title: "Scamming Limits",
+                        desc: "Penipuan IC hanya boleh dilakukan pada batas tertentu (seperti barang ilegal) dan dilarang keras menipu kendaraan, properti, atau transaksi besar bernilai tinggi.",
+                        punishmentType: "sedang",
+                        punishmentText: "Pertama: Jail OOC (60 menit) + pengembalian aset korban. Kedua: Temporary Ban (3 - 7 hari)."
+                    }
+                ]
+            },
+            {
+                chapter: "BAB IX: ETIKA KOMUNIKASI & LINGKUNGAN",
+                id: "bab-9",
+                articles: [
+                    {
+                        number: "Pasal 1",
+                        title: "Insult OOC & Provokasi",
+                        desc: "Dilarang melakukan penghinaan, perkataan kotor, atau provokasi toxic kepada pemain lain di saluran OOC (/b, /o, PM, atau Discord).",
+                        punishmentType: "sedang",
+                        punishmentText: "Pertama: Mute / Jail OOC (30 menit). Kedua: Temporary Ban (3 hari)."
+                    },
+                    {
+                        number: "Pasal 2",
+                        title: "Spamming & Advertisement Rules",
+                        desc: "Dilarang melakukan spam chat, command berulang, atau promosi server lain / situs berbahaya di dalam platform Kalunasera Roleplay.",
+                        punishmentType: "berat",
+                        punishmentText: "Pertama: Mute chat / Kick dari server. Kedua: Temporary Ban (3 hari) hingga Permanent Ban (iklan gelap)."
+                    },
+                    {
+                        number: "Pasal 3",
+                        title: "ERP (Erotic Roleplay) Restrictions",
+                        desc: "Aksi Erotic Roleplay (ERP) dilarang keras kecuali ada persetujuan OOC tertutup antar pihak dewasa. Mutlak dilarang melibatkan karakter di bawah umur.",
+                        punishmentType: "berat",
+                        punishmentText: "Pertama: Temporary Ban (7 hari). Kedua: Permanent Ban (terutama jika melibatkan karakter di bawah umur)."
+                    }
+                ]
+            },
+            {
+                chapter: "BAB X: KLASIFIKASI KEPUTUSAN & PROSEDUR SANKSI",
+                id: "bab-10",
+                articles: [
+                    {
+                        number: "Pasal 1",
+                        title: "Kebijakan Tindakan Staf / Admin",
+                        desc: "Keputusan staf/admin yang bertugas saat menegakkan aturan di dalam game adalah mutlak. Dilarang berdebat tidak sopan saat proses admin duty.",
+                        punishmentType: "sedang",
+                        punishmentText: "Pertama: Jail OOC (30 menit) karena tidak kooperatif. Kedua: Temporary Ban (1 - 3 hari) karena pelecehan verbal terhadap staf."
+                    },
+                    {
+                        number: "Pasal 2",
+                        title: "Akumulasi Peringatan Berulang (Warning Points)",
+                        desc: "Setiap pelanggaran ringan yang diakumulasi secara terus-menerus oleh pemain akan berdampak pada peningkatan bobot hukuman otomatis.",
+                        punishmentType: "berat",
+                        punishmentText: "Akumulasi 3x Warning aktif = Otomatis naik menjadi Temporary Ban (1 hari) hingga Permanent Ban."
+                    },
+                    {
+                        number: "Pasal 3",
+                        title: "Hak Banding Sanksi (Ban Appeal)",
+                        desc: "Pemain yang merasa sanksi atau ban yang diterima tidak sesuai berhak mengajukan permohonan banding (Ban Appeal) melalui forum resmi dengan bukti valid.",
+                        punishmentType: "berat",
+                        punishmentText: "Jika terbukti membuat laporan banding palsu / rekayasa bukti, akun dikenakan tambahan masa Permanent Ban tanpa hak banding."
+                    }
+                ]
+            },
+            {
+                chapter: "BAB XI: PELANGGARAN ADMINISTRATIF BERAT & BAN EVADER",
+                id: "bab-11",
+                articles: [
+                    {
+                        number: "Pasal 1",
+                        title: "Ban Evasion (Menghindari Hukuman Akun)",
+                        desc: "Dilarang keras membuat karakter baru, mendaftarkan akun baru, atau menggunakan identitas alternatif saat akun utama sedang dalam masa hukuman Temporary Ban atau Permanent Ban.",
+                        punishmentType: "permanen",
+                        punishmentText: "Permanent Ban instan untuk seluruh akun baru serta perpanjangan masa Hardware/IP Ban secara menyeluruh."
+                    },
+                    {
+                        number: "Pasal 2",
+                        title: "Pemalsuan Identitas OOC & Manipulasi Bukti Laporan",
+                        desc: "Dilarang memalsukan identitas staf, menyunting screenshot, atau menyunting rekaman video bukti laporan (fabricated evidence) untuk menjatuhkan pemain lain atau membebaskan diri.",
+                        punishmentType: "berat",
+                        punishmentText: "Pertama: Temporary Ban (14 hari) bagi manipulasi ringan. Kedua: Permanent Ban untuk kasus manipulasi bukti berat."
+                    },
+                    {
+                        number: "Pasal 3",
+                        title: "Compromised / Botted Account Operations",
+                        desc: "Dilarang menggunakan akun otomatis (bot), skrip makro (macro script), atau akun hasil retasan/ilegal untuk melakukan aktivitas otomatisasi di Kalunasera Roleplay.",
+                        punishmentType: "permanen",
+                        punishmentText: "Permanent Ban mutlak pada akun yang terdeteksi menggunakan bot atau aktivitas otomatisasi ilegal tanpa peringatan."
+                    }
+                ]
+            },
+            {
+                chapter: "BAB XII: ATURAN IDENTITAS KONSEPTUAL & KOMUNIKASI (MASK & VOICE/CHAT)",
+                id: "bab-12",
+                articles: [
+                    {
+                        number: "Pasal 1",
+                        title: "Penggunaan Masker & Identitas Anonim (Non-RP Masking)",
+                        desc: "Saat menggunakan topeng/masker (/mask), pemain wajib memastikan identitas fisik, suara, atau tanda pengenal tidak dikenali secara tidak masuk akal oleh pihak lain tanpa dasar IC kuat.",
+                        punishmentType: "sedang",
+                        punishmentText: "Pertama: Jail OOC (30 menit) karena membuka identitas orang bermasker secara tidak realistis. Kedua: Temporary Ban (2 hari)."
+                    },
+                    {
+                        number: "Pasal 2",
+                        title: "Penyalahgunaan Saluran Chat IC & OOC (/b, /do, /me)",
+                        desc: "Dilarang menggunakan saluran OOC (/b) di tengah situasi roleplay aktif untuk berdebat. Penggunaan command /do wajib objektif dan tidak boleh dikarang untuk memanipulasi lawan.",
+                        punishmentType: "sedang",
+                        punishmentText: "Pertama: Jail OOC (30 menit) karena mencampur aduk chat IC/OOC di tengah RP. Kedua: Temporary Ban (3 hari)."
+                    },
+                    {
+                        number: "Pasal 3",
+                        title: "Penggunaan Voice Chat In-Game",
+                        desc: "Jika server menggunakan voice chat, pemain wajib menjaga tata karsa percakapan IC tanpa mencampur suara OOC, suara bising/musik keras (mic spam), atau teriakan tidak senonoh.",
+                        punishmentType: "ringan",
+                        punishmentText: "Pertama: Mute Voice / Kick dari server. Kedua: Temporary Ban (1 - 3 hari) jika melanggar berulang kali."
+                    }
+                ]
+            },
+            {
+                chapter: "BAB XIII: MANAJEMEN PROPERTI, ASSET HOARDING, & LINGKUNGAN KOTA",
+                id: "bab-13",
+                articles: [
+                    {
+                        number: "Pasal 1",
+                        title: "Penelantaran Properti & Inaktifitas Asset (Asset Hoarding)",
+                        desc: "Pemain dilarang menimbun properti (rumah/bisnis) berlebihan tanpa aktivitas roleplay jelas hanya untuk spekulasi ekonomi. Properti tidak aktif akan disita pemerintah kota (Admin).",
+                        punishmentType: "sedang",
+                        punishmentText: "Pertama: Penyitaan properti secara paksa oleh sistem kota tanpa pengembalian uang (Refund). Kedua: Temporary Ban (3 hari)."
+                    },
+                    {
+                        number: "Pasal 2",
+                        title: "Perusakan Fasilitas Publik & Parkir Liar Ekstrem (Non-RP Parking)",
+                        desc: "Dilarang meninggalkan kendaraan pribadi sembarangan di tengah jalan raya, atap gedung, atau area terlarang yang mengganggu keindahan kota dan kelancaran lalu lintas umum.",
+                        punishmentType: "ringan",
+                        punishmentText: "Pertama: Kendaraan di-tow otomatis (impound) + denda IC. Kedua: Jail OOC (20 menit) jika ditinggal di area vital berulang."
+                    },
+                    {
+                        number: "Pasal 3",
+                        title: "Eksploitasi Iklan Publik (Advertisement Abuse)",
+                        desc: "Dilarang menggunakan layanan iklan publik (News / Advertisement) untuk mengirim pesan yang mengandung provokasi, penghinaan, ujaran kebencian, atau promosi terselubung.",
+                        punishmentType: "sedang",
+                        punishmentText: "Pertama: Jail OOC (30 menit) + pencabutan hak akses iklan (ad-ban). Kedua: Temporary Ban (2 hari) jika mengandung unsur SARA."
+                    }
+                ]
+            }
+        ];
+
+        let currentFilter = 'all';
+
+        // Render Sidebar Navigation
+        function renderSidebar() {
+            const nav = document.getElementById('chapter-nav');
+            nav.innerHTML = '';
+            rulesData.forEach((chap, idx) => {
+                const a = document.createElement('a');
+                a.href = `#${chap.id}`;
+                a.className = "flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-400 hover:text-white hover:bg-dark-700/60 transition-colors group";
+                a.innerHTML = `
+                    <span class="w-6 h-6 rounded-lg bg-dark-700 text-indigo-400 flex items-center justify-center text-xs font-bold group-hover:bg-indigo-600 group-hover:text-white transition-colors">${idx + 1}</span>
+                    <span class="truncate">${chap.chapter.split(':')[0]}</span>
+                `;
+                nav.appendChild(a);
+            });
+        }
+
+        // Get Punishment Badge Style
+        function getPunishmentBadge(type) {
+            switch(type) {
+                case 'ringan':
+                    return `<span class="px-2.5 py-1 rounded-md text-xs font-semibold bg-yellow-500/10 text-yellow-400 border border-yellow-500/20"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Ringan</span>`;
+                case 'sedang':
+                    return `<span class="px-2.5 py-1 rounded-md text-xs font-semibold bg-orange-500/10 text-orange-400 border border-orange-500/20"><i class="fa-solid fa-circle-exclamation mr-1"></i> Sedang</span>`;
+                case 'berat':
+                    return `<span class="px-2.5 py-1 rounded-md text-xs font-semibold bg-red-500/10 text-red-400 border border-red-500/20"><i class="fa-solid fa-fire mr-1"></i> Berat</span>`;
+                case 'permanen':
+                    return `<span class="px-2.5 py-1 rounded-md text-xs font-semibold bg-purple-500/10 text-purple-400 border border-purple-500/20"><i class="fa-solid fa-ban mr-1"></i> Permanen / Evader</span>`;
+                default:
+                    return '';
+            }
+        }
+
+        // Render Rules List
+        function renderRules(filter = 'all', searchQuery = '') {
+            const container = document.getElementById('rules-container');
+            const emptyState = document.getElementById('empty-state');
+            container.innerHTML = '';
+
+            let totalVisible = 0;
+
+            rulesData.forEach(chap => {
+                const filteredArticles = chap.articles.filter(art => {
+                    const matchesFilter = (filter === 'all' || art.punishmentType === filter);
+                    const query = searchQuery.toLowerCase();
+                    const matchesSearch = art.title.toLowerCase().includes(query) || 
+                                          art.desc.toLowerCase().includes(query) || 
+                                          art.number.toLowerCase().includes(query) ||
+                                          art.punishmentText.toLowerCase().includes(query);
+                    return matchesFilter && matchesSearch;
+                });
+
+                if (filteredArticles.length > 0) {
+                    totalVisible++;
+                    const section = document.createElement('div');
+                    section.id = chap.id;
+                    section.className = "scroll-mt-24 space-y-4";
+                    
+                    let articlesHTML = filteredArticles.map(art => `
+                        <div class="bg-dark-800/90 border border-gray-800 rounded-2xl p-5 sm:p-6 hover:border-indigo-500/40 transition-all shadow-lg group">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
+                                <div class="flex items-center space-x-3">
+                                    <span class="px-3 py-1 rounded-lg text-xs font-bold bg-indigo-600/20 text-indigo-400 border border-indigo-500/30">${art.number}</span>
+                                    <h4 class="text-base sm:text-lg font-bold text-white group-hover:text-indigo-300 transition-colors">${art.title}</h4>
+                                </div>
+                                <div>${getPunishmentBadge(art.punishmentType)}</div>
+                            </div>
+                            <p class="text-gray-300 text-sm leading-relaxed mb-4">${art.desc}</p>
+                            <div class="bg-dark-900/60 border border-gray-800/80 rounded-xl p-3.5 text-xs text-gray-400 flex items-start space-x-3">
+                                <i class="fa-solid fa-gavel text-indigo-400 mt-0.5 text-sm"></i>
+                                <div>
+                                    <strong class="text-gray-300 block mb-0.5 font-semibold">Sanksi Resmi:</strong>
+                                    <span class="text-gray-400 leading-normal">${art.punishmentText}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `).join('');
+
+                    section.innerHTML = `
+                        <div class="flex items-center space-x-3 pb-2 border-b border-gray-800 mt-8 mb-4">
+                            <div class="w-3 h-3 rounded-full bg-indigo-500 shadow-sm shadow-indigo-500"></div>
+                            <h3 class="text-lg sm:text-xl font-extrabold text-white tracking-wide">${chap.chapter}</h3>
+                        </div>
+                        <div class="grid grid-cols-1 gap-4">
+                            ${articlesHTML}
+                        </div>
+                    `;
+                    container.appendChild(section);
+                }
+            });
+
+            if (totalVisible === 0) {
+                emptyState.classList.remove('hidden');
+            } else {
+                emptyState.classList.add('hidden');
+            }
+        }
+
+        // Filter Function
+        function filterByPunishment(type) {
+            currentFilter = type;
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if (btn.getAttribute('data-filter') === type) {
+                    btn.className = "px-3 py-1 rounded-lg text-xs font-medium bg-indigo-600 text-white transition-all filter-btn active";
+                } else {
+                    btn.className = "px-3 py-1 rounded-lg text-xs font-medium bg-dark-800 text-gray-400 border border-gray-700 hover:bg-dark-700 transition-all filter-btn";
+                }
+            });
+            const query = document.getElementById('search-input').value;
+            renderRules(currentFilter, query);
+        }
+
+        // Event Listeners
+        document.getElementById('search-input').addEventListener('input', (e) => {
+            renderRules(currentFilter, e.target.value);
+        });
+
+        // Mobile Sidebar Toggle
+        const sidebar = document.getElementById('sidebar');
+        const backdrop = document.getElementById('sidebar-backdrop');
+        const toggleBtn = document.getElementById('sidebar-toggle');
+
+        function toggleSidebar() {
+            sidebar.classList.toggle('-translate-x-full');
+            backdrop.classList.toggle('hidden');
+        }
+
+        toggleBtn.addEventListener('click', toggleSidebar);
+        backdrop.addEventListener('click', toggleSidebar);
+
+        // Initialize on load
+        window.onload = () => {
+            renderSidebar();
+            renderRules('all', '');
+        };
+    </script>
+</body>
+</html>
