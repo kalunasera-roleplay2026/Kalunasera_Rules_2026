@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalunasera Roleplay - Official SA-MP Server & Rules</title>
+    <title>Server Rules & Breakrules - Kalunasera Roleplay</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -13,178 +13,101 @@
                 extend: {
                     colors: {
                         dark: {
-                            900: '#07090e',
-                            800: '#0f172a',
-                            700: '#1e293b',
-                            600: '#334155'
+                            900: '#0b0f19',
+                            800: '#111827',
+                            700: '#1f2937',
+                            600: '#374151'
                         },
                         brand: {
                             500: '#6366f1',
-                            600: '#4f46e5',
-                            glow: '#818cf8'
+                            600: '#4f46e5'
                         }
                     }
                 }
             }
         }
     </script>
-    <!-- Google Fonts & FontAwesome -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Inter & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { font-family: 'Inter', sans-serif; }
         ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #07090e; }
-        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 4px; }
-        ::-webkit-scrollbar-thumb { background: #334155; }
-        .hero-glow {
-            background: radial-gradient(circle at center, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
-        }
+        ::-webkit-scrollbar-track { background: #0b0f19; }
+        ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4b5563; }
     </style>
 </head>
 <body class="bg-dark-900 text-gray-100 min-h-screen flex flex-col antialiased selection:bg-indigo-500 selection:text-white">
 
     <!-- Top Navigation Bar -->
-    <header class="sticky top-0 z-50 bg-dark-800/80 backdrop-blur-xl border-b border-gray-800/80 shadow-2xl">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-            <div class="flex items-center space-x-4">
-                <button id="sidebar-toggle" class="md:hidden text-gray-400 hover:text-white p-2.5 rounded-xl bg-dark-700/50 border border-gray-700/50 focus:outline-none">
-                    <i class="fa-solid fa-bars text-lg"></i>
+    <header class="sticky top-0 z-50 bg-dark-800/80 backdrop-blur-md border-b border-gray-800 shadow-lg">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <button id="sidebar-toggle" class="md:hidden text-gray-400 hover:text-white p-2 focus:outline-none">
+                    <i class="fa-solid fa-bars text-xl"></i>
                 </button>
-                <div class="flex items-center space-x-3">
-                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-indigo-600 via-indigo-500 to-violet-500 flex items-center justify-center shadow-lg shadow-indigo-500/25 border border-indigo-400/30">
-                        <i class="fa-solid fa-shield-halved text-white text-xl"></i>
+                <div class="flex items-center space-x-2">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600 to-violet-500 flex items-center justify-center shadow-lg shadow-indigo-500/30">
+                        <i class="fa-solid fa-shield-halved text-white text-lg"></i>
                     </div>
                     <div>
-                        <span class="text-[10px] uppercase tracking-widest text-indigo-400 font-extrabold block">SA-MP Community</span>
-                        <h1 class="text-xl font-black text-white tracking-wide">KALUNASERA RP</h1>
+                        <span class="text-xs uppercase tracking-widest text-indigo-400 font-semibold block">SA-MP Server Rules</span>
+                        <h1 class="text-lg font-bold text-white tracking-wide">Kalunasera Roleplay</h1>
                     </div>
                 </div>
             </div>
-            
             <div class="flex items-center space-x-4">
-                <div class="hidden md:flex items-center space-x-2 bg-emerald-500/10 border border-emerald-500/20 px-4 py-2 rounded-2xl">
-                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
-                    <span class="text-xs font-semibold text-emerald-400">Server Online (SAMPA)</span>
-                </div>
-                <a href="#rules-section" class="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-bold shadow-lg shadow-indigo-600/30 transition-all transform hover:-translate-y-0.5">
-                    <i class="fa-solid fa-book-open mr-2"></i> Baca Rules
-                </a>
+                <span class="hidden sm:inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse mr-2"></span> Server Status: Active
+                </span>
             </div>
         </div>
     </header>
 
-    <!-- Main Hero / About Section -->
-    <section class="relative overflow-hidden pt-12 pb-16 border-b border-gray-800/60 bg-gradient-to-b from-dark-800/40 to-dark-900">
-        <div class="absolute inset-0 hero-glow pointer-events-none"></div>
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                
-                <!-- Left Intro -->
-                <div class="lg:col-span-7 space-y-6">
-                    <div class="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-indigo-500/10 border border-indigo-500/20 text-indigo-400 text-xs font-bold tracking-wide uppercase">
-                        <i class="fa-solid fa-globe mr-1.5"></i> San Andreas Multiplayer (SA-MP) Indonesia
-                    </div>
-                    <h2 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight">
-                        Selamat Datang di <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 via-violet-400 to-purple-400">Kalunasera Roleplay</span>
-                    </h2>
-                    <p class="text-gray-300 text-base sm:text-lg leading-relaxed font-normal">
-                        Kalunasera Roleplay adalah wadah imersif bagi para pecinta game simulasi kehidupan nyata di dalam dunia San Andreas. Di sini, Anda dapat merancang kisah hidup karakter impian Anda—mulai dari warga sipil, pengusaha sukses, aparat penegak hukum, hingga tokoh kriminal berkarisma.
-                    </p>
-
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-2">
-                        <div class="bg-dark-800/80 border border-gray-800 p-4 rounded-2xl backdrop-blur-md">
-                            <div class="text-indigo-400 text-2xl font-black mb-1">Custom</div>
-                            <div class="text-gray-400 text-xs font-medium">Sistem PAWN Modern & Fitur Eksklusif</div>
-                        </div>
-                        <div class="bg-dark-800/80 border border-gray-800 p-4 rounded-2xl backdrop-blur-md">
-                            <div class="text-violet-400 text-2xl font-black mb-1">Strict</div>
-                            <div class="text-gray-400 text-xs font-medium">Lingkungan Roleplay Berkualitas Tinggi</div>
-                        </div>
-                        <div class="bg-dark-800/80 border border-gray-800 p-4 rounded-2xl backdrop-blur-md col-span-2 sm:col-span-1">
-                            <div class="text-emerald-400 text-2xl font-black mb-1">Active</div>
-                            <div class="text-gray-400 text-xs font-medium">Komunitas & Staff Responsif</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right: What is Roleplay Card -->
-                <div class="lg:col-span-5">
-                    <div class="bg-dark-800/90 border border-indigo-500/30 rounded-3xl p-6 sm:p-8 shadow-2xl relative overflow-hidden backdrop-blur-xl">
-                        <div class="absolute -right-10 -top-10 w-40 h-40 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
-                        <div class="flex items-center space-x-3 mb-5">
-                            <div class="w-10 h-10 rounded-xl bg-indigo-600/20 border border-indigo-500/40 flex items-center justify-center text-indigo-400">
-                                <i class="fa-solid fa-masks-theater text-lg"></i>
-                            </div>
-                            <h3 class="text-xl font-bold text-white">Apa itu Roleplay (RP)?</h3>
-                        </div>
-                        <div class="space-y-4 text-sm text-gray-300 leading-relaxed">
-                            <p>
-                                <strong class="text-white">Roleplay</strong> adalah permainan peran di mana pemain bertindak sebagai karakter fiktif di dalam dunia virtual yang hidup. Anda harus berpikir, berbicara, dan bertindak sesuai dengan latar belakang (storyline) karakter Anda sendiri.
-                            </p>
-                            <ul class="space-y-2.5 pt-2 border-t border-gray-800">
-                                <li class="flex items-start space-x-2.5">
-                                    <i class="fa-solid fa-check text-indigo-400 mt-1"></i>
-                                    <span><strong>IC (In-Character):</strong> Segala hal yang berkaitan langsung dengan kehidupan dan tindakan karakter di dalam game.</span>
-                                </li>
-                                <li class="flex items-start space-x-2.5">
-                                    <i class="fa-solid fa-check text-indigo-400 mt-1"></i>
-                                    <span><strong>OOC (Out-of-Character):</strong> Dunia nyata pemain di balik layar. Dilarang mencampuradukkan masalah IC ke OOC!</span>
-                                </li>
-                                <li class="flex items-start space-x-2.5">
-                                    <i class="fa-solid fa-check text-indigo-400 mt-1"><span><strong>Imersi & Realisme:</strong> Menjunjung tinggi hukum fisika, rasa takut karakter (FearRP), dan interaksi sosial yang wajar.</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Main Container (Sidebar & Rules Documentation) -->
-    <div id="rules-section" class="flex-1 max-w-7xl w-full mx-auto flex flex-col md:flex-row relative px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Main Container -->
+    <div class="flex-1 max-w-7xl w-full mx-auto flex flex-col md:flex-row relative">
         
         <!-- Sidebar Backdrop for Mobile -->
         <div id="sidebar-backdrop" class="fixed inset-0 bg-black/60 z-30 hidden md:hidden transition-opacity"></div>
 
         <!-- Sidebar Navigation -->
-        <aside id="sidebar" class="fixed md:sticky top-24 z-40 h-[calc(100vh-7rem)] w-72 bg-dark-800/90 backdrop-blur-xl border border-gray-800 rounded-3xl flex flex-col transition-transform duration-300 transform -translate-x-full md:translate-x-0 overflow-y-auto shadow-2xl mr-6 mb-6">
-            <div class="p-5 border-b border-gray-800">
-                <span class="text-[11px] font-bold text-indigo-400 uppercase tracking-wider block mb-2">Navigasi Pasal</span>
+        <aside id="sidebar" class="fixed md:sticky top-16 z-40 h-[calc(100vh-4rem)] w-72 bg-dark-800 border-r border-gray-800 flex flex-col transition-transform duration-300 transform -translate-x-full md:translate-x-0 overflow-y-auto">
+            <div class="p-4 border-b border-gray-800">
                 <div class="relative">
-                    <i class="fa-solid fa-search absolute left-3.5 top-3 text-gray-400 text-sm"></i>
-                    <input type="text" id="search-input" placeholder="Cari bab, pasal, sanksi..." class="w-full bg-dark-900 border border-gray-700/80 rounded-xl pl-10 pr-4 py-2.5 text-sm text-gray-200 placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-colors">
+                    <i class="fa-solid fa-search absolute left-3 top-3 text-gray-400 text-sm"></i>
+                    <input type="text" id="search-input" placeholder="Cari pasal atau sanksi..." class="w-full bg-dark-900 border border-gray-700 rounded-xl pl-9 pr-4 py-2 text-sm text-gray-200 placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition-colors">
                 </div>
             </div>
-            <nav id="chapter-nav" class="flex-1 p-3 space-y-1.5 overflow-y-auto">
+            <nav id="chapter-nav" class="flex-1 p-4 space-y-1 overflow-y-auto">
                 <!-- Populated dynamically via JS -->
             </nav>
-            <div class="p-4 border-t border-gray-800 text-[11px] text-gray-500 text-center font-medium">
-                Kalunasera Roleplay &copy; 2026
+            <div class="p-4 border-t border-gray-800 text-xs text-gray-500 text-center">
+                Kalunasera RP &copy; 2026. All Rights Reserved.
             </div>
         </aside>
 
         <!-- Content Area -->
-        <main class="flex-1 min-w-0">
-            <!-- Header Title -->
-            <div class="bg-dark-800/60 border border-gray-800 rounded-3xl p-6 sm:p-8 mb-8 backdrop-blur-md shadow-xl flex flex-col md:flex-row md:items-center justify-between gap-6">
-                <div>
-                    <span class="text-xs uppercase font-extrabold tracking-wider text-indigo-400 bg-indigo-500/10 px-3.5 py-1.5 rounded-full border border-indigo-500/30">Dokumentasi Resmi</span>
-                    <h3 class="text-2xl sm:text-3xl font-black text-white mt-3 mb-1">Kitab Undang-Undang Breakrules</h3>
-                    <p class="text-gray-400 text-sm sm:text-base">Panduan lengkap dan aturan sanksi dari Bab I hingga Bab XIII Kalunasera Roleplay.</p>
+        <main class="flex-1 p-4 sm:p-6 lg:p-8 min-w-0">
+            <!-- Hero Banner -->
+            <div class="bg-gradient-to-r from-indigo-900/40 via-purple-900/20 to-dark-800 border border-indigo-500/20 rounded-2xl p-6 sm:p-8 mb-8 shadow-xl">
+                <div class="max-w-3xl">
+                    <span class="text-xs uppercase font-bold tracking-wider text-indigo-400 bg-indigo-500/10 px-3 py-1 rounded-full border border-indigo-500/30">Official Documentation</span>
+                    <h2 class="text-2xl sm:text-3xl font-extrabold text-white mt-3 mb-2">Panduan Breakrules & Sanksi</h2>
+                    <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
+                        Dokumen resmi tata tertib bermain di Kalunasera Roleplay. Setiap pemain wajib mematuhi seluruh aturan dari Bab I hingga Bab XIII demi menciptakan lingkungan roleplay yang adil, imersif, dan berkualitas tinggi.
+                    </p>
                 </div>
             </div>
 
             <!-- Quick Filter Badges -->
-            <div class="flex flex-wrap items-center gap-2 mb-8 bg-dark-800/40 p-4 border border-gray-800 rounded-2xl backdrop-blur-md" id="filter-badges">
-                <span class="text-xs font-bold text-gray-400 mr-2"><i class="fa-solid fa-filter mr-1.5 text-indigo-400"></i> Filter Sanksi:</span>
-                <button onclick="filterByPunishment('all')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-indigo-600 text-white transition-all filter-btn active shadow-md shadow-indigo-600/30" data-filter="all">Semua Pasal</button>
-                <button onclick="filterByPunishment('ringan')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-dark-900 text-yellow-400 border border-yellow-500/30 hover:bg-yellow-500/10 transition-all filter-btn" data-filter="ringan">Ringan</button>
-                <button onclick="filterByPunishment('sedang')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-dark-900 text-orange-400 border border-orange-500/30 hover:bg-orange-500/10 transition-all filter-btn" data-filter="sedang">Sedang</button>
-                <button onclick="filterByPunishment('berat')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-dark-900 text-red-400 border border-red-500/30 hover:bg-red-500/10 transition-all filter-btn" data-filter="berat">Berat</button>
-                <button onclick="filterByPunishment('permanen')" class="px-3.5 py-1.5 rounded-xl text-xs font-bold bg-dark-900 text-purple-400 border border-purple-500/30 hover:bg-purple-500/10 transition-all filter-btn" data-filter="permanen">Permanen / Evader</button>
+            <div class="flex flex-wrap items-center gap-2 mb-6" id="filter-badges">
+                <span class="text-xs font-semibold text-gray-400 mr-2"><i class="fa-solid fa-filter mr-1"></i> Filter Sanksi:</span>
+                <button onclick="filterByPunishment('all')" class="px-3 py-1 rounded-lg text-xs font-medium bg-indigo-600 text-white transition-all filter-btn active" data-filter="all">Semua</button>
+                <button onclick="filterByPunishment('ringan')" class="px-3 py-1 rounded-lg text-xs font-medium bg-dark-800 text-yellow-400 border border-yellow-500/30 hover:bg-yellow-500/10 transition-all filter-btn" data-filter="ringan">Ringan / Peringatan</button>
+                <button onclick="filterByPunishment('sedang')" class="px-3 py-1 rounded-lg text-xs font-medium bg-dark-800 text-orange-400 border border-orange-500/30 hover:bg-orange-500/10 transition-all filter-btn" data-filter="sedang">Sedang (Jail/Temp Ban)</button>
+                <button onclick="filterByPunishment('berat')" class="px-3 py-1 rounded-lg text-xs font-medium bg-dark-800 text-red-400 border border-red-500/30 hover:bg-red-500/10 transition-all filter-btn" data-filter="berat">Berat</button>
+                <button onclick="filterByPunishment('permanen')" class="px-3 py-1 rounded-lg text-xs font-medium bg-dark-800 text-purple-400 border border-purple-500/30 hover:bg-purple-500/10 transition-all filter-btn" data-filter="permanen">Permanen / Ban Evader</button>
             </div>
 
             <!-- Rules Container -->
@@ -193,21 +116,13 @@
             </div>
 
             <!-- Empty Search State -->
-            <div id="empty-state" class="hidden text-center py-20 bg-dark-800/40 rounded-3xl border border-gray-800 mt-6 backdrop-blur-md">
-                <i class="fa-solid fa-triangle-exclamation text-5xl text-gray-600 mb-4"></i>
-                <h4 class="text-xl font-bold text-gray-300">Pasal Tidak Ditemukan</h4>
+            <div id="empty-state" class="hidden text-center py-16 bg-dark-800/40 rounded-2xl border border-gray-800 mt-6">
+                <i class="fa-solid fa-triangle-exclamation text-4xl text-gray-500 mb-3"></i>
+                <h3 class="text-lg font-bold text-gray-300">Pasal Tidak Ditemukan</h3>
                 <p class="text-sm text-gray-500 mt-1">Coba gunakan kata kunci pencarian yang lain.</p>
             </div>
         </main>
     </div>
-
-    <!-- Footer -->
-    <footer class="bg-dark-800 border-t border-gray-800 py-8 text-center text-xs text-gray-500 mt-12">
-        <div class="max-w-7xl mx-auto px-4 space-y-2">
-            <p class="font-bold text-gray-400">Kalunasera Roleplay SA-MP Community Server</p>
-            <p>Dibangun dengan sistem modern untuk pengalaman Roleplay Indonesia terbaik.</p>
-        </div>
-    </footer>
 
     <!-- Application Script -->
     <script>
@@ -321,26 +236,26 @@
                 ]
             },
             {
-                chapter: "BAB V: KRIMINALITAS & SPESIFIKASI PERAMPOKAN",
+                chapter: "BAB V: KRIMINALITAS & SPESIFIKASI PERAMPOKAN (ROBBERY RULES)",
                 id: "bab-5",
                 articles: [
                     {
                         number: "Pasal 1",
-                        title: "Perampokan Toko / Warung & Fasilitas Kecil",
+                        title: "Perampokan Toko / Warung & Fasilitas Kecil (Store Robbery)",
                         desc: "Perampokan toko kecil/warung wajib memenuhi jumlah minimal pelaku dan minimal polisi on duty sesuai sistem. Dilarang merampok toko yang sama berturut-turut dalam waktu cooldown.",
                         punishmentType: "sedang",
                         punishmentText: "Pertama: Jail OOC (45 menit) + pembatalan hasil rampokan. Kedua: Temporary Ban (2 - 3 hari)."
                     },
                     {
                         number: "Pasal 2",
-                        title: "Perampokan Bank Besar & Institusi Keuangan",
+                        title: "Perampokan Bank Besar & Institusi Keuangan (Major Bank Robbery)",
                         desc: "Perampokan Bank Sentral/Besar wajib melibatkan faksi kepolisian dalam skala besar dan perencanaan roleplay matang. Dilarang menggunakan trik non-RP saat negosiasi sandera.",
                         punishmentType: "berat",
                         punishmentText: "Pertama: Jail OOC (90 menit) + penyitaan barang bukti. Kedua: Temporary Ban (3 - 7 hari)."
                     },
                     {
                         number: "Pasal 3",
-                        title: "Perampokan Individu & Batasan Korban Sipil",
+                        title: "Perampokan Individu & Batasan Korban Sipil (Civilian Robbery Limits)",
                         desc: "Dilarang merampok pemain baru (newbie) atau yang sedang bekerja pada pekerjaan resmi (sidejob negara). Terdapat batasan maksimal nominal uang/barang yang diambil.",
                         punishmentType: "sedang",
                         punishmentText: "Pertama: Jail OOC (45 menit) + pengembalian penuh barang korban. Kedua: Temporary Ban (3 hari)."
@@ -348,7 +263,7 @@
                 ]
             },
             {
-                chapter: "BAB VI: FRAKSI, ORG, & PEKERJAAN",
+                chapter: "BAB VI: FRAKSI, ORG, & PEKERJAAN (FACTIONS)",
                 id: "bab-6",
                 articles: [
                     {
@@ -375,7 +290,7 @@
                 ]
             },
             {
-                chapter: "BAB VII: PENGGUNAAN FITUR & EKSPLOITASI",
+                chapter: "BAB VII: PENGGUNAAN FITUR & EKSPLOITASI (EXPLOITING)",
                 id: "bab-7",
                 articles: [
                     {
@@ -387,7 +302,7 @@
                     },
                     {
                         number: "Pasal 2",
-                        title: "Third-Party Programs (Cheating / Software Ilegal)",
+                        title: "Third-Party Programs (Third-Party Software / Cheating)",
                         desc: "Dilarang keras menggunakan program pihak ketiga ilegal, modifikasi berbahaya, cheat, aimbot, wallhack, atau modifikasi yang memberikan keunggulan tidak adil.",
                         punishmentType: "permanen",
                         punishmentText: "Permanent Ban (Pemblokiran akun selamanya secara mutlak tanpa toleransi)."
@@ -444,7 +359,7 @@
                         title: "Spamming & Advertisement Rules",
                         desc: "Dilarang melakukan spam chat, command berulang, atau promosi server lain / situs berbahaya di dalam platform Kalunasera Roleplay.",
                         punishmentType: "berat",
-                        punishmentText: "Pertama: Mute chat / Kick dari server. Kedua: Temporary Ban (3 hari) hingga Permanent Ban."
+                        punishmentText: "Pertama: Mute chat / Kick dari server. Kedua: Temporary Ban (3 hari) hingga Permanent Ban (iklan gelap)."
                     },
                     {
                         number: "Pasal 3",
@@ -468,7 +383,7 @@
                     },
                     {
                         number: "Pasal 2",
-                        title: "Akumulasi Peringatan Berulang",
+                        title: "Akumulasi Peringatan Berulang (Warning Points)",
                         desc: "Setiap pelanggaran ringan yang diakumulasi secara terus-menerus oleh pemain akan berdampak pada peningkatan bobot hukuman otomatis.",
                         punishmentType: "berat",
                         punishmentText: "Akumulasi 3x Warning aktif = Otomatis naik menjadi Temporary Ban (1 hari) hingga Permanent Ban."
@@ -496,7 +411,7 @@
                     {
                         number: "Pasal 2",
                         title: "Pemalsuan Identitas OOC & Manipulasi Bukti Laporan",
-                        desc: "Dilarang memalsukan identitas staf, menyunting screenshot, atau menyunting rekaman video bukti laporan (fabricated evidence) untuk menjatuhkan pemain lain.",
+                        desc: "Dilarang memalsukan identitas staf, menyunting screenshot, atau menyunting rekaman video bukti laporan (fabricated evidence) untuk menjatuhkan pemain lain atau membebaskan diri.",
                         punishmentType: "berat",
                         punishmentText: "Pertama: Temporary Ban (14 hari) bagi manipulasi ringan. Kedua: Permanent Ban untuk kasus manipulasi bukti berat."
                     },
@@ -510,12 +425,12 @@
                 ]
             },
             {
-                chapter: "BAB XII: ATURAN IDENTITAS KONSEPTUAL & KOMUNIKASI",
+                chapter: "BAB XII: ATURAN IDENTITAS KONSEPTUAL & KOMUNIKASI (MASK & VOICE/CHAT)",
                 id: "bab-12",
                 articles: [
                     {
                         number: "Pasal 1",
-                        title: "Penggunaan Masker & Identitas Anonim",
+                        title: "Penggunaan Masker & Identitas Anonim (Non-RP Masking)",
                         desc: "Saat menggunakan topeng/masker (/mask), pemain wajib memastikan identitas fisik, suara, atau tanda pengenal tidak dikenali secara tidak masuk akal oleh pihak lain tanpa dasar IC kuat.",
                         punishmentType: "sedang",
                         punishmentText: "Pertama: Jail OOC (30 menit) karena membuka identitas orang bermasker secara tidak realistis. Kedua: Temporary Ban (2 hari)."
@@ -537,19 +452,19 @@
                 ]
             },
             {
-                chapter: "BAB XIII: MANAJEMEN PROPERTI & LINGKUNGAN KOTA",
+                chapter: "BAB XIII: MANAJEMEN PROPERTI, ASSET HOARDING, & LINGKUNGAN KOTA",
                 id: "bab-13",
                 articles: [
                     {
                         number: "Pasal 1",
-                        title: "Penelantaran Properti & Inaktifitas Asset",
+                        title: "Penelantaran Properti & Inaktifitas Asset (Asset Hoarding)",
                         desc: "Pemain dilarang menimbun properti (rumah/bisnis) berlebihan tanpa aktivitas roleplay jelas hanya untuk spekulasi ekonomi. Properti tidak aktif akan disita pemerintah kota (Admin).",
                         punishmentType: "sedang",
                         punishmentText: "Pertama: Penyitaan properti secara paksa oleh sistem kota tanpa pengembalian uang (Refund). Kedua: Temporary Ban (3 hari)."
                     },
                     {
                         number: "Pasal 2",
-                        title: "Perusakan Fasilitas Publik & Parkir Liar Ekstrem",
+                        title: "Perusakan Fasilitas Publik & Parkir Liar Ekstrem (Non-RP Parking)",
                         desc: "Dilarang meninggalkan kendaraan pribadi sembarangan di tengah jalan raya, atap gedung, atau area terlarang yang mengganggu keindahan kota dan kelancaran lalu lintas umum.",
                         punishmentType: "ringan",
                         punishmentText: "Pertama: Kendaraan di-tow otomatis (impound) + denda IC. Kedua: Jail OOC (20 menit) jika ditinggal di area vital berulang."
@@ -574,9 +489,9 @@
             rulesData.forEach((chap, idx) => {
                 const a = document.createElement('a');
                 a.href = `#${chap.id}`;
-                a.className = "flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-xs font-semibold text-gray-400 hover:text-white hover:bg-dark-700/60 transition-all group";
+                a.className = "flex items-center space-x-3 px-3 py-2.5 rounded-xl text-sm font-medium text-gray-400 hover:text-white hover:bg-dark-700/60 transition-colors group";
                 a.innerHTML = `
-                    <span class="w-6 h-6 rounded-lg bg-dark-700 text-indigo-400 flex items-center justify-center text-[10px] font-black group-hover:bg-indigo-600 group-hover:text-white transition-colors">${idx + 1}</span>
+                    <span class="w-6 h-6 rounded-lg bg-dark-700 text-indigo-400 flex items-center justify-center text-xs font-bold group-hover:bg-indigo-600 group-hover:text-white transition-colors">${idx + 1}</span>
                     <span class="truncate">${chap.chapter.split(':')[0]}</span>
                 `;
                 nav.appendChild(a);
@@ -587,13 +502,13 @@
         function getPunishmentBadge(type) {
             switch(type) {
                 case 'ringan':
-                    return `<span class="px-3 py-1 rounded-lg text-xs font-bold bg-yellow-500/10 text-yellow-400 border border-yellow-500/20"><i class="fa-solid fa-triangle-exclamation mr-1.5"></i> Ringan</span>`;
+                    return `<span class="px-2.5 py-1 rounded-md text-xs font-semibold bg-yellow-500/10 text-yellow-400 border border-yellow-500/20"><i class="fa-solid fa-triangle-exclamation mr-1"></i> Ringan</span>`;
                 case 'sedang':
-                    return `<span class="px-3 py-1 rounded-lg text-xs font-bold bg-orange-500/10 text-orange-400 border border-orange-500/20"><i class="fa-solid fa-circle-exclamation mr-1.5"></i> Sedang</span>`;
+                    return `<span class="px-2.5 py-1 rounded-md text-xs font-semibold bg-orange-500/10 text-orange-400 border border-orange-500/20"><i class="fa-solid fa-circle-exclamation mr-1"></i> Sedang</span>`;
                 case 'berat':
-                    return `<span class="px-3 py-1 rounded-lg text-xs font-bold bg-red-500/10 text-red-400 border border-red-500/20"><i class="fa-solid fa-fire mr-1.5"></i> Berat</span>`;
+                    return `<span class="px-2.5 py-1 rounded-md text-xs font-semibold bg-red-500/10 text-red-400 border border-red-500/20"><i class="fa-solid fa-fire mr-1"></i> Berat</span>`;
                 case 'permanen':
-                    return `<span class="px-3 py-1 rounded-lg text-xs font-bold bg-purple-500/10 text-purple-400 border border-purple-500/20"><i class="fa-solid fa-ban mr-1.5"></i> Permanen / Evader</span>`;
+                    return `<span class="px-2.5 py-1 rounded-md text-xs font-semibold bg-purple-500/10 text-purple-400 border border-purple-500/20"><i class="fa-solid fa-ban mr-1"></i> Permanen / Evader</span>`;
                 default:
                     return '';
             }
@@ -622,22 +537,22 @@
                     totalVisible++;
                     const section = document.createElement('div');
                     section.id = chap.id;
-                    section.className = "scroll-mt-28 space-y-4";
+                    section.className = "scroll-mt-24 space-y-4";
                     
                     let articlesHTML = filteredArticles.map(art => `
-                        <div class="bg-dark-800/80 border border-gray-800 rounded-2xl p-6 hover:border-indigo-500/40 transition-all shadow-xl backdrop-blur-md group">
-                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3.5">
+                        <div class="bg-dark-800/90 border border-gray-800 rounded-2xl p-5 sm:p-6 hover:border-indigo-500/40 transition-all shadow-lg group">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
                                 <div class="flex items-center space-x-3">
-                                    <span class="px-3 py-1 rounded-lg text-xs font-black bg-indigo-600/20 text-indigo-400 border border-indigo-500/30">${art.number}</span>
+                                    <span class="px-3 py-1 rounded-lg text-xs font-bold bg-indigo-600/20 text-indigo-400 border border-indigo-500/30">${art.number}</span>
                                     <h4 class="text-base sm:text-lg font-bold text-white group-hover:text-indigo-300 transition-colors">${art.title}</h4>
                                 </div>
                                 <div>${getPunishmentBadge(art.punishmentType)}</div>
                             </div>
-                            <p class="text-gray-300 text-sm leading-relaxed mb-4 font-normal">${art.desc}</p>
-                            <div class="bg-dark-900/70 border border-gray-800/80 rounded-xl p-4 text-xs text-gray-400 flex items-start space-x-3">
+                            <p class="text-gray-300 text-sm leading-relaxed mb-4">${art.desc}</p>
+                            <div class="bg-dark-900/60 border border-gray-800/80 rounded-xl p-3.5 text-xs text-gray-400 flex items-start space-x-3">
                                 <i class="fa-solid fa-gavel text-indigo-400 mt-0.5 text-sm"></i>
                                 <div>
-                                    <strong class="text-gray-300 block mb-1 font-bold">Sanksi Resmi:</strong>
+                                    <strong class="text-gray-300 block mb-0.5 font-semibold">Sanksi Resmi:</strong>
                                     <span class="text-gray-400 leading-normal">${art.punishmentText}</span>
                                 </div>
                             </div>
@@ -645,9 +560,9 @@
                     `).join('');
 
                     section.innerHTML = `
-                        <div class="flex items-center space-x-3.5 pb-3 border-b border-gray-800/80 mt-10 mb-5">
-                            <div class="w-3.5 h-3.5 rounded-full bg-indigo-500 shadow-md shadow-indigo-500/50"></div>
-                            <h3 class="text-lg sm:text-xl font-black text-white tracking-wide">${chap.chapter}</h3>
+                        <div class="flex items-center space-x-3 pb-2 border-b border-gray-800 mt-8 mb-4">
+                            <div class="w-3 h-3 rounded-full bg-indigo-500 shadow-sm shadow-indigo-500"></div>
+                            <h3 class="text-lg sm:text-xl font-extrabold text-white tracking-wide">${chap.chapter}</h3>
                         </div>
                         <div class="grid grid-cols-1 gap-4">
                             ${articlesHTML}
@@ -669,9 +584,9 @@
             currentFilter = type;
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 if (btn.getAttribute('data-filter') === type) {
-                    btn.className = "px-3.5 py-1.5 rounded-xl text-xs font-bold bg-indigo-600 text-white transition-all filter-btn active shadow-md shadow-indigo-600/30";
+                    btn.className = "px-3 py-1 rounded-lg text-xs font-medium bg-indigo-600 text-white transition-all filter-btn active";
                 } else {
-                    btn.className = "px-3.5 py-1.5 rounded-xl text-xs font-bold bg-dark-900 text-gray-400 border border-gray-800 hover:bg-dark-700 transition-all filter-btn";
+                    btn.className = "px-3 py-1 rounded-lg text-xs font-medium bg-dark-800 text-gray-400 border border-gray-700 hover:bg-dark-700 transition-all filter-btn";
                 }
             });
             const query = document.getElementById('search-input').value;
