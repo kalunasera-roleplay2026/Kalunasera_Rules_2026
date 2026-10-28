@@ -63,7 +63,7 @@
 </head>
 <body class="bg-dark-900 text-gray-100 min-h-screen flex flex-col antialiased gold-grid selection:bg-gold-500 selection:text-black">
 
-    <!-- Top Navigation Header (Clean & Modern tanpa IP) -->
+    <!-- Top Navigation Header -->
     <header class="sticky top-0 z-50 gold-panel border-b border-gold-500/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
             <div class="flex items-center space-x-4">
@@ -75,13 +75,13 @@
                         <i class="fa-solid fa-crown text-black text-lg"></i>
                     </div>
                     <div>
-                        <span class="text-[10px] uppercase tracking-widest text-gold-400 font-extrabold font-mono block">KALUNASERA EXCLUSIVE</span>
-                        <h1 class="text-lg sm:text-xl font-black text-white tracking-wider">PORTAL CODECS</h1>
+                        <!-- Tulisan Portal Codecs sudah dihilangkan -->
+                        <h1 class="text-lg sm:text-xl font-black text-white tracking-wider">KALUNASERA EXCLUSIVE</h1>
                     </div>
                 </div>
             </div>
 
-            <!-- Status Indicator / Minimalist Badge -->
+            <!-- Status Indicator -->
             <div class="flex items-center space-x-2 bg-dark-700/60 border border-gold-500/30 px-4 py-2 rounded-xl">
                 <span class="w-2.5 h-2.5 rounded-full bg-gold-400 animate-pulse"></span>
                 <span class="text-xs font-mono font-bold text-gold-300">SECURE SYSTEM ACTIVE</span>
@@ -101,20 +101,20 @@
                         SERVER <span class="text-transparent bg-clip-text bg-gradient-to-r from-gold-400 via-amber-bright to-amber-glow gold-glow">KALUNASERA RP</span>
                     </h2>
                     <p class="text-gray-300 text-sm sm:text-base leading-relaxed">
-                        Pusat regulasi tata tertib, hukum umum, dan SOP faksi resmi Kalunasera Roleplay. Dibangun dengan standar strict-RP tertinggi untuk pengalaman imersif yang berkualitas.
+                        Pusat regulasi tata tertib, hukum umum, dan SOP Fraksi resmi Kalunasera Roleplay. Dibangun dengan standar strict-RP tertinggi untuk pengalaman imersif yang berkualitas.
                     </p>
                     <div class="grid grid-cols-3 gap-3 pt-2">
                         <div class="gold-panel p-3.5 rounded-xl border border-gold-500/20 text-center">
-                            <div class="text-gold-400 text-lg font-black font-mono">20 PS</div>
-                            <div class="text-[10px] text-gray-400 uppercase tracking-wider font-bold">Per Faksi Resmi</div>
+                            <div class="text-gold-400 text-lg font-black font-mono">ALL FRAKSI</div>
+                            <div class="text-[10px] text-gray-400 uppercase tracking-wider font-bold">Breakrules Fraksi </div>
                         </div>
                         <div class="gold-panel p-3.5 rounded-xl border border-amber-500/20 text-center">
                             <div class="text-amber-bright text-lg font-black font-mono">13 BAB</div>
                             <div class="text-[10px] text-gray-400 uppercase tracking-wider font-bold">General Breakrules</div>
                         </div>
                         <div class="gold-panel p-3.5 rounded-xl border border-yellow-500/20 text-center">
-                            <div class="text-yellow-400 text-lg font-black font-mono">GOLD</div>
-                            <div class="text-[10px] text-gray-400 uppercase tracking-wider font-bold">Luxury Standard</div>
+                            <div class="text-yellow-400 text-lg font-black font-mono">KLS</div>
+                            <div class="text-[10px] text-gray-400 uppercase tracking-wider font-Kalunasera Roleplay</div>
                         </div>
                     </div>
                 </div>
@@ -157,7 +157,7 @@
                 <!-- Master Switcher (General vs Factions) -->
                 <div class="grid grid-cols-2 gap-2 mb-4">
                     <button onclick="switchMasterTab('general')" id="tab-btn-general" class="px-3 py-2 rounded-xl text-xs font-bold bg-gold-600 text-black transition-all shadow-md shadow-gold-600/30">Umum (I-XIII)</button>
-                    <button onclick="switchMasterTab('faction')" id="tab-btn-faction" class="px-3 py-2 rounded-xl text-xs font-bold bg-dark-700 text-gray-400 hover:text-white transition-all">Faksi (20 Ps)</button>
+                    <button onclick="switchMasterTab('faction')" id="tab-btn-faction" class="px-3 py-2 rounded-xl text-xs font-bold bg-dark-700 text-gray-400 hover:text-white transition-all">Fraksi (20 Ps)</button>
                 </div>
 
                 <!-- Faction Sub-switcher (Hidden by default) -->
@@ -171,7 +171,7 @@
                 <!-- Live Search Box -->
                 <div class="relative flex items-center">
                     <i class="fa-solid fa-search absolute left-3.5 text-gold-400 text-xs pointer-events-none"></i>
-                    <input type="text" id="search-input" placeholder="Cari pasal atau faksi..." class="w-full bg-dark-900/90 border border-gold-500/30 rounded-xl pl-10 pr-4 py-2.5 text-xs text-gray-200 placeholder-gray-500 focus:outline-none focus:border-gold-400 transition-colors font-mono">
+                    <input type="text" id="search-input" placeholder="Cari pasal atau Fraksi..." class="w-full bg-dark-900/90 border border-gold-500/30 rounded-xl pl-10 pr-4 py-2.5 text-xs text-gray-200 placeholder-gray-500 focus:outline-none focus:border-gold-400 transition-colors font-mono">
                 </div>
             </div>
 
@@ -263,7 +263,7 @@
                 id: "bab-5",
                 articles: [
                     { number: "Pasal 1", title: "Store Robbery Rules", desc: "Perampokan toko wajib memenuhi jumlah minimal pelaku dan polisi online sesuai sistem server.", punishmentType: "sedang", punishmentText: "Pertama: Jail OOC (45 menit). Kedua: Temporary Ban (2 hari)." },
-                    { number: "Pasal 2", title: "Major Bank Robbery", desc: "Perampokan bank besar wajib melibatkan faksi kepolisian skala besar dan perencanaan matang.", punishmentType: "berat", punishmentText: "Pertama: Jail OOC (90 menit). Kedua: Temporary Ban (3-7 hari)." },
+                    { number: "Pasal 2", title: "Major Bank Robbery", desc: "Perampokan bank besar wajib melibatkan Fraksi kepolisian skala besar dan perencanaan matang.", punishmentType: "berat", punishmentText: "Pertama: Jail OOC (90 menit). Kedua: Temporary Ban (3-7 hari)." },
                     { number: "Pasal 3", title: "Civilian Robbery Limits", desc: "Dilarang merampok pemain baru (newbie) atau pekerja job resmi negara. Patuhi batas nominal rampokan.", punishmentType: "sedang", punishmentText: "Pertama: Jail OOC (45 menit) + Refund korban. Kedua: Temporary Ban (3 hari)." }
                 ]
             },
@@ -349,9 +349,9 @@
                 list.push({
                     number: `Pasal ${i}`,
                     title: `Regulasi Operasional ${prefix} #${i}`,
-                    desc: `Ketentuan wajib operasional dan SOP internal ${prefix} pasal ${i} dalam menjalankan tugas kedinasan dan kepatuhan hukum di Kalunasera Roleplay.`,
+                    desc: `Ketentuan wajib operasional dan SOP internal ${prefix} pasal${i} dalam menjalankan tugas kedinasan dan kepatuhan hukum di Kalunasera Roleplay.`,
                     punishmentType: pType,
-                    punishmentText: `Sanksi resmi pelanggaran ${prefix} Pasal ${i}: Teguran internal / Skorsing / Jail OOC / Pemecatan faksi.`
+                    punishmentText: `Sanksi resmi pelanggaran ${prefix} Pasal${i}: Teguran internal / Skorsing / Jail OOC / Pemecatan Fraksi.`
                 });
             }
             return list;
@@ -381,48 +381,7 @@
 
         function switchRpTab(tab) {
             ['ic-ooc', 'fearrp', 'chardev'].forEach(t => {
-                const btn = document.getElementById(`btn-${t}`);
-                if(t === tab) {
-                    btn.className = "px-3 py-1.5 rounded-xl text-xs font-bold bg-gold-600 text-black transition-all whitespace-nowrap shadow-md shadow-gold-600/30";
-                } else {
-                    btn.className = "px-3 py-1.5 rounded-xl text-xs font-bold bg-dark-700 text-gray-400 hover:text-white transition-all whitespace-nowrap";
-                }
-            });
-            document.getElementById('rp-content-box').innerHTML = rpAcademyData[tab];
-        }
-
-        // --- STATE MANAGEMENT ---
-        let currentMasterTab = 'general';
-        let currentFaction = 'lspd';
-        let currentFilter = 'all';
-
-        function switchMasterTab(tab) {
-            currentMasterTab = tab;
-            const subtabs = document.getElementById('faction-subtabs');
-            const btnGen = document.getElementById('tab-btn-general');
-            const btnFac = document.getElementById('tab-btn-faction');
-            
-            if(tab === 'general') {
-                subtabs.classList.add('hidden');
-                btnGen.className = "px-3 py-2 rounded-xl text-xs font-bold bg-gold-600 text-black transition-all shadow-md shadow-gold-600/30";
-                btnFac.className = "px-3 py-2 rounded-xl text-xs font-bold bg-dark-700 text-gray-400 hover:text-white transition-all";
-                document.getElementById('content-category-tag').innerText = "Official Codex";
-                document.getElementById('content-main-title').innerText = "Kitab Undang-Undang Breakrules Umum";
-                document.getElementById('content-main-desc').innerText = "Standar operasional tata tertib bermain dari Bab I hingga Bab XIII Kalunasera Roleplay.";
-            } else {
-                subtabs.classList.remove('hidden');
-                btnFac.className = "px-3 py-2 rounded-xl text-xs font-bold bg-gold-600 text-black transition-all shadow-md shadow-gold-600/30";
-                btnGen.className = "px-3 py-2 rounded-xl text-xs font-bold bg-dark-700 text-gray-400 hover:text-white transition-all";
-                updateFactionHeader();
-            }
-            renderSidebar();
-            renderRules();
-        }
-
-        function switchFaction(fac) {
-            currentFaction = fac;
-            ['lspd', 'safd', 'sanews', 'pemerintah'].forEach(f => {
-                const b = document.getElementById(`fac-${f}`);
+                const btn = document.getElementById(`btn-${t}`); if(t === tab) { btn.className = "px-3 py-1.5 rounded-xl text-xs font-bold bg-gold-600 text-black transition-all whitespace-nowrap shadow-md shadow-gold-600/30"; } else { btn.className = "px-3 py-1.5 rounded-xl text-xs font-bold bg-dark-700 text-gray-400 hover:text-white transition-all whitespace-nowrap"; } }); document.getElementById('rp-content-box').innerHTML = rpAcademyData[tab]; }  // --- STATE MANAGEMENT --- let currentMasterTab = 'general'; let currentFaction = 'lspd'; let currentFilter = 'all';  function switchMasterTab(tab) { currentMasterTab = tab; const subtabs = document.getElementById('faction-subtabs'); const btnGen = document.getElementById('tab-btn-general'); const btnFac = document.getElementById('tab-btn-faction');  if(tab === 'general') { subtabs.classList.add('hidden'); btnGen.className = "px-3 py-2 rounded-xl text-xs font-bold bg-gold-600 text-black transition-all shadow-md shadow-gold-600/30"; btnFac.className = "px-3 py-2 rounded-xl text-xs font-bold bg-dark-700 text-gray-400 hover:text-white transition-all"; document.getElementById('content-category-tag').innerText = "Official Codex"; document.getElementById('content-main-title').innerText = "Kitab Undang-Undang Breakrules Umum"; document.getElementById('content-main-desc').innerText = "Standar operasional tata tertib bermain dari Bab I hingga Bab XIII Kalunasera Roleplay."; } else { subtabs.classList.remove('hidden'); btnFac.className = "px-3 py-2 rounded-xl text-xs font-bold bg-gold-600 text-black transition-all shadow-md shadow-gold-600/30"; btnGen.className = "px-3 py-2 rounded-xl text-xs font-bold bg-dark-700 text-gray-400 hover:text-white transition-all"; updateFactionHeader(); } renderSidebar(); renderRules(); }  function switchFaction(fac) { currentFaction = fac; ['lspd', 'safd', 'sanews', 'pemerintah'].forEach(f => { const b = document.getElementById(`fac-${f}`);
                 if(f === fac) {
                     b.className = "py-1.5 rounded-lg text-[11px] font-bold bg-gold-600 text-black transition-all shadow-sm";
                 } else {
@@ -438,7 +397,7 @@
             const names = { lspd: 'LSPD (Kepolisian)', safd: 'SAFD (Medis)', sanews: 'SanNews (Jurnalistik)', pemerintah: 'Pemerintah (Birokrasi)' };
             document.getElementById('content-category-tag').innerText = `Faction Breakrules (${currentFaction.toUpperCase()})`;
             document.getElementById('content-main-title').innerText = `Breakrules Resmi ${names[currentFaction]}`;
-            document.getElementById('content-main-desc').innerText = `Kumpulan 20 pasal regulasi khusus internal dan kedinasan faksi ${names[currentFaction]} di Kalunasera Roleplay.`;
+            document.getElementById('content-main-desc').innerText = `Kumpulan 20 pasal regulasi khusus internal dan kedinasan Fraksi ${names[currentFaction]} di Kalunasera Roleplay.`;
         }
 
         function getPunishmentBadge(type) {
@@ -496,78 +455,4 @@
                         <div class="gold-panel rounded-2xl p-5 sm:p-6 border border-gold-500/15 hover:border-gold-400/40 transition-all shadow-lg group">
                             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
                                 <div class="flex items-center space-x-3">
-                                    <span class="px-2.5 py-1 rounded-lg text-xs font-black font-mono bg-gold-600/20 text-gold-300 border border-gold-500/30">${art.number}</span>
-                                    <h4 class="text-sm sm:text-base font-bold text-white group-hover:text-gold-300 transition-colors">${art.title}</h4>
-                                </div>
-                                <div>${getPunishmentBadge(art.punishmentType)}</div>
-                            </div>
-                            <p class="text-gray-300 text-xs sm:text-sm leading-relaxed mb-4">${art.desc}</p>
-                            <div class="bg-dark-900/80 border border-gold-500/10 rounded-xl p-3 text-xs text-gray-400 flex items-start space-x-3">
-                                <i class="fa-solid fa-gavel text-gold-400 mt-0.5 text-xs"></i>
-                                <div>
-                                    <strong class="text-gray-300 block mb-0.5 font-bold">Sanksi Resmi:</strong>
-                                    <span class="text-gray-400 leading-normal">${art.punishmentText}</span>
-                                </div>
-                            </div>
-                        </div>
-                    `).join('');
-
-                    section.innerHTML = `
-                        <div class="flex items-center space-x-3 pb-2.5 border-b border-gold-500/20 mt-8 mb-4">
-                            <div class="w-3 h-3 rounded-full bg-gold-500 shadow-sm shadow-gold-500"></div>
-                            <h3 class="text-base sm:text-lg font-black text-white tracking-wide">${chap.chapter}</h3>
-                        </div>
-                        <div class="grid grid-cols-1 gap-4">
-                            ${articlesHTML}
-                        </div>
-                    `;
-                    container.appendChild(section);
-                }
-            });
-
-            if (totalVisible === 0) {
-                emptyState.classList.remove('hidden');
-            } else {
-                emptyState.classList.add('hidden');
-            }
-        }
-
-        function filterByPunishment(type) {
-            currentFilter = type;
-            document.querySelectorAll('.filter-btn').forEach(btn => {
-                if (btn.getAttribute('data-filter') === type) {
-                    btn.className = "px-3 py-1.5 rounded-xl text-xs font-bold bg-gold-500 text-black transition-all filter-btn active shadow-md shadow-gold-500/30";
-                } else {
-                    btn.className = "px-3 py-1.5 rounded-xl text-xs font-bold bg-dark-900 text-gray-400 border border-gold-500/20 hover:bg-dark-700 transition-all filter-btn";
-                }
-            });
-            renderRules(document.getElementById('search-input').value);
-        }
-
-        // Search event listener
-        document.getElementById('search-input').addEventListener('input', (e) => {
-            renderRules(e.target.value);
-        });
-
-        // Mobile Sidebar Toggle
-        const sidebar = document.getElementById('sidebar');
-        const backdrop = document.getElementById('sidebar-backdrop');
-        const toggleBtn = document.getElementById('sidebar-toggle');
-
-        function toggleSidebar() {
-            sidebar.classList.toggle('-translate-x-full');
-            backdrop.classList.toggle('hidden');
-        }
-
-        toggleBtn.addEventListener('click', toggleSidebar);
-        backdrop.addEventListener('click', toggleSidebar);
-
-        // Initialize on load
-        window.onload = () => {
-            switchRpTab('ic-ooc');
-            renderSidebar();
-            renderRules();
-        };
-    </script>
-</body>
-</html>
+                                    <span class="px-2.5 py-1 rounded-lg text-xs font-black font-mono bg
