@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kalunasera Roleplay | SA-MP Elite Universe & Faction Codex</title>
+    <title>Kalunasera Roleplay | SA-MP Elite Universe & 20-Article Faction Codex</title>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -128,7 +128,7 @@
                     <div class="grid grid-cols-3 gap-4 pt-2">
                         <div class="glass-panel p-4 rounded-2xl border-cyber-600/40">
                             <div class="text-cyber-neon text-xl sm:text-2xl font-black font-mono mb-1">FACTION</div>
-                            <div class="text-gray-400 text-[11px] sm:text-xs font-medium">LSPD, SAFD, News & Gov SOP</div>
+                            <div class="text-gray-400 text-[11px] sm:text-xs font-medium">LSPD, SAFD, News & Gov SOP (20 Pasal Masing-masing)</div>
                         </div>
                         <div class="glass-panel p-4 rounded-2xl border-cyber-600/40">
                             <div class="text-cyber-purple text-xl sm:text-2xl font-black font-mono mb-1">STRICT</div>
@@ -188,7 +188,7 @@
         
         <div id="sidebar-backdrop" class="fixed inset-0 bg-black/80 z-30 hidden md:hidden transition-opacity backdrop-blur-sm"></div>
 
-        <!-- Sidebar Navigation with Master Tab Switcher -->
+        <!-- Sidebar Navigation with Master Tab Switcher & Faction Sub-tabs -->
         <aside id="sidebar" class="fixed md:sticky top-28 z-40 h-[calc(100vh-8rem)] w-72 glass-panel rounded-3xl flex flex-col transition-transform duration-300 transform -translate-x-full md:translate-x-0 overflow-y-auto shadow-2xl mr-6 mb-6 border-cyber-600/40">
             <div class="p-5 border-b border-cyber-600/40 space-y-3">
                 <span class="text-[11px] font-mono font-bold text-cyber-neon uppercase tracking-wider block">Kategori Regulasi</span>
@@ -199,8 +199,16 @@
                         Umum (I-XIII)
                     </button>
                     <button onclick="switchMainTab('faction')" id="tab-btn-faction" class="px-3 py-2 rounded-lg text-xs font-mono font-bold text-gray-400 hover:text-white transition-all">
-                        Faksi Resmi
+                        Faksi (20 Ps)
                     </button>
+                </div>
+
+                <!-- Faction Sub-tabs (Visible only when Faction Tab is active) -->
+                <div id="faction-subtabs-container" class="hidden grid grid-cols-2 gap-1.5 pt-2">
+                    <button onclick="switchFactionTab('lspd')" id="sub-btn-lspd" class="px-2.5 py-1.5 rounded-lg text-[11px] font-mono font-bold bg-cyber-neon text-black transition-all">LSPD (20)</button>
+                    <button onclick="switchFactionTab('safd')" id="sub-btn-safd" class="px-2.5 py-1.5 rounded-lg text-[11px] font-mono font-bold bg-cyber-800 text-gray-400 hover:text-white transition-all">SAFD (20)</button>
+                    <button onclick="switchFactionTab('sannews')" id="sub-btn-sannews" class="px-2.5 py-1.5 rounded-lg text-[11px] font-mono font-bold bg-cyber-800 text-gray-400 hover:text-white transition-all">SanNews (20)</button>
+                    <button onclick="switchFactionTab('gov')" id="sub-btn-gov" class="px-2.5 py-1.5 rounded-lg text-[11px] font-mono font-bold bg-cyber-800 text-gray-400 hover:text-white transition-all">Gov (20)</button>
                 </div>
 
                 <div class="relative pt-1">
@@ -550,181 +558,132 @@
             }
         ];
 
-        // Exactly 20 Comprehensive Articles covering LSPD, SAFD, SanNews, and Government
-        const factionRulesData = [
+        // Faction Breakrules Datasets (Exactly 20 Articles Each for LSPD, SAFD, SanNews, and Government)
+        const lspdRulesData = [
             {
-                chapter: "KODE ETIK & BREAKRULES LSPD (LOS SANTOS POLICE DEPARTMENT)",
+                chapter: "KODE ETIK & BREAKRULES LSPD (20 PASAL)",
                 id: "faction-lspd",
                 articles: [
-                    {
-                        number: "Pasal 1 (LSPD)",
-                        title: "Prosedur Penggunaan Kekuatan & Lethal Force",
-                        desc: "Anggota LSPD dilarang langsung menggunakan senjata api (Lethal Force) terhadap pelaku kriminal kecuali pelaku mengancam nyawa petugas/sipil secara langsung (Taser First Policy untuk non-armed suspect).",
-                        punishmentType: "berat",
-                        punishmentText: "Pertama: Skorsing tugas & Jail OOC (45 menit). Kedua: Pemecatan dari LSPD (Faction Kick) + Temporary Ban (3 hari)."
-                    },
-                    {
-                        number: "Pasal 2 (LSPD)",
-                        title: "Penyalahgunaan Wewenang Penahanan & Suap",
-                        desc: "Dilarang melakukan penangkapan tanpa dasar bukti IC yang sah (Arbitrary Arrest) atau menerima suap tanpa izin korupsi resmi dari High Admin.",
-                        punishmentType: "berat",
-                        punishmentText: "Pertama: Faction Kick instan + Jail OOC (60 menit). Kedua: Temporary Ban (5 hari) dan pencabutan hak faksi legal."
-                    },
-                    {
-                        number: "Pasal 3 (LSPD)",
-                        title: "Prosedur Pengejaran Kendaraan (High-Speed Pursuit)",
-                        desc: "Petugas wajib mematuhi standar keselamatan taktis saat melakukan pengejaran (PIT Maneuver terukur) dan dilarang menabrak tersangka secara bar-bar tanpa peringatan megapon.",
-                        punishmentType: "sedang",
-                        punishmentText: "Pertama: Teguran internal & Peringatan Admin. Kedua: Skorsing tugas kepolisian selama 3 hari."
-                    },
-                    {
-                        number: "Pasal 4 (LSPD)",
-                        title: "Penyitaan Barang Bukti & Prosedur Impound",
-                        desc: "Penyitaan senjata, uang, atau kendaraan sipil wajib dicatat dalam sistem data kepolisian in-game. Dilarang menggelapkan barang bukti untuk kepentingan pribadi.",
-                        punishmentType: "berat",
-                        punishmentText: "Pertama: Pengembalian barang sitaan + Jail OOC (60 menit). Kedua: Pemecatan faksi dan denda in-game."
-                    },
-                    {
-                        number: "Pasal 5 (LSPD)",
-                        title: "Penggunaan Senjata Berat & Armor Taktis (SWAT SOP)",
-                        desc: "Penggunaan senjata serbu berat (M4/Shotgun) dan armor taktis hanya diperbolehkan dalam situasi darurat tingkat tinggi seperti perampokan bank besar atau situasi penyanderaan kritis.",
-                        punishmentType: "sedang",
-                        punishmentText: "Pertama: Teguran keras dari Internal Affairs. Kedua: Skorsing divisi taktis selama 1 minggu."
-                    }
+                    { number: "Pasal 1", title: "Prosedur Penggunaan Kekuatan & Lethal Force", desc: "Anggota LSPD dilarang langsung menggunakan senjata api (Lethal Force) terhadap pelaku kriminal kecuali pelaku mengancam nyawa petugas/sipil secara langsung (Taser First Policy untuk non-armed suspect).", punishmentType: "berat", punishmentText: "Pertama: Skorsing tugas & Jail OOC (45 menit). Kedua: Pemecatan dari LSPD (Faction Kick) + Temporary Ban (3 hari)." },
+                    { number: "Pasal 2", title: "Penyalahgunaan Wewenang Penahanan & Suap", desc: "Dilarang melakukan penangkapan tanpa dasar bukti IC yang sah (Arbitrary Arrest) atau menerima suap tanpa izin korupsi resmi dari High Admin.", punishmentType: "berat", punishmentText: "Pertama: Faction Kick instan + Jail OOC (60 menit). Kedua: Temporary Ban (5 hari) dan pencabutan hak faksi legal." },
+                    { number: "Pasal 3", title: "Prosedur Pengejaran Kendaraan (High-Speed Pursuit)", desc: "Petugas wajib mematuhi standar keselamatan taktis saat melakukan pengejaran (PIT Maneuver terukur) dan dilarang menabrak tersangka secara bar-bar tanpa peringatan megapon.", punishmentType: "sedang", punishmentText: "Pertama: Teguran internal & Peringatan Admin. Kedua: Skorsing tugas kepolisian selama 3 hari." },
+                    { number: "Pasal 4", title: "Penyitaan Barang Bukti & Prosedur Impound", desc: "Penyitaan senjata, uang, atau kendaraan sipil wajib dicatat dalam sistem data kepolisian in-game. Dilarang menggelapkan barang bukti untuk kepentingan pribadi.", punishmentType: "berat", punishmentText: "Pertama: Pengembalian barang sitaan + Jail OOC (60 menit). Kedua: Pemecatan faksi dan denda in-game." },
+                    { number: "Pasal 5", title: "Penggunaan Senjata Berat & Armor Taktis (SWAT SOP)", desc: "Penggunaan senjata serbu berat (M4/Shotgun) dan armor taktis hanya diperbolehkan dalam situasi darurat tingkat tinggi seperti perampokan bank besar atau situasi penyanderaan kritis.", punishmentType: "sedang", punishmentText: "Pertama: Teguran keras dari Internal Affairs. Kedua: Skorsing divisi taktis selama 1 minggu." },
+                    { number: "Pasal 6", title: "Larangan Meta-Informasi Radio Kepolisian (Dispatch MG)", desc: "Petugas dilarang memanfaatkan informasi posisi tersangka yang didapatkan dari channel Discord di luar radio game saat melakukan pengejaran.", punishmentType: "sedang", punishmentText: "Pertama: Jail OOC (30 menit). Kedua: Skorsing tugas dan pencabutan akses radio taktis." },
+                    { number: "Pasal 7", title: "Prosedur Interogasi & Hak Tersangka (Miranda Rights)", desc: "Petugas wajib membacakan hak-hak tersangka (Miranda Warning) sebelum memulai proses interogasi resmi di ruang interogasi kantor polisi.", punishmentType: "ringan", punishmentText: "Pertama: Teguran lisan oleh komandan. Kedua: Pembatalan tuntutan hukum kasus terkait." },
+                    { number: "Pasal 8", title: "Larangan Main Hakim Sendiri (Vigilante Cop)", desc: "Polisi dilarang melakukan eksekusi di luar hukum terhadap tahanan atau warga sipil di tempat sepi tanpa prosedur peradilan yang sah.", punishmentType: "permanen", punishmentText: "Permanent Ban + Faction Blacklist seumur hidup." },
+                    { number: "Pasal 9", title: "Kewajiban Penggunaan Bodycam & Dashcam RP", desc: "Setiap tindakan penggeledahan atau penembakan wajib disimulasikan menggunakan command /me menyalakan bodycam atau dashcam kendaraan.", punishmentType: "ringan", punishmentText: "Pertama: Peringatan lisan. Kedua: Penolakan laporan penindakan di forum." },
+                    { number: "Pasal 10", title: "Etika Komunikasi Patroli & Saluran Darurat 911", desc: "Dilarang melakukan spam atau percakapan non-formal di frekuensi darurat 911 yang mengganggu koordinasi antar-petugas di lapangan.", punishmentType: "ringan", punishmentText: "Pertama: Teguran internal faksi. Kedua: Skorsing shift patroli." },
+                    { number: "Pasal 11", title: "Prosedur Razia Jalanan (Checkpoint & Roadblock)", desc: "Pembuatan razia jalanan wajib dikoordinasikan dengan atasan dan tidak boleh dilakukan di zona damai (safezone) atau area spawn pemula.", punishmentType: "sedang", punishmentText: "Pertama: Pembubaran paksa roadblock. Kedua: Skorsing tugas." },
+                    { number: "Pasal 12", title: "Larangan Penelantaran Tahanan di Sel", desc: "Petugas dilarang membiarkan tahanan berlama-lama di sel penjara tanpa segera memproses masa hukuman atau memberikan hak bail sesuai hukum.", punishmentType: "sedang", punishmentText: "Pertama: Teguran keras internal. Kedua: Sanksi administratif denda IC." },
+                    { number: "Pasal 13", title: "Penggunaan Kendaraan Dinas (Cruiser & LSPD Air)", desc: "Kendaraan patroli hanya boleh digunakan untuk tugas kepolisian. Dilarang menggunakan mobil dinas untuk urusan pribadi atau balap liar.", punishmentType: "ringan", punishmentText: "Pertama: Denda perbaikan kendaraan. Kedua: Pencabutan izin kunci kendaraan dinas." },
+                    { number: "Pasal 14", title: "Aturan Penyamaran Satuan Intelijen (Undercover)", desc: "Operasi penyamaran wajib mendapatkan izin khusus dari Chief of Police atau Internal Affairs agar tidak terjadi salah tembak antar sesama aparat.", punishmentType: "berat", punishmentText: "Pertama: Faction Kick + Jail OOC (45 menit)." },
+                    { number: "Pasal 15", title: "Kewajiban Mematuhi Aturan Shift & Absensi", desc: "Anggota LSPD wajib aktif bertugas secara berkala dan mengikuti briefing mingguan yang diselenggarakan oleh pimpinan departemen.", punishmentType: "ringan", punishmentText: "Pertama: Surat peringatan internal. Kedua: Penurunan pangkat." },
+                    { number: "Pasal 16", title: "Larangan Bersekutu dengan Sindikat Kriminal", desc: "Petugas dilarang membocorkan rencana penggerebekan (raid) atau memberikan perlindungan kepada gembong kriminal kota.", punishmentType: "permanen", punishmentText: "Permanent Ban + Faction Wipe." },
+                    { number: "Pasal 17", title: "Standar Penggunaan K9 Unit (Anjing Pelacak)", desc: "Penggunaan anjing pelacak kepolisian harus sesuai prosedur RP pencarian jejak dan dilarang digunakan untuk menyerang warga sipil tanpa alasan sah.", punishmentType: "sedang", punishmentText: "Pertama: Pencabutan izin handler K9. Kedua: Skorsing tugas." },
+                    { number: "Pasal 18", title: "Prosedur Negosiasi Sandera (Hostage Negotiation)", desc: "Perwira negosiator yang ditunjuk wajib memprioritaskan keselamatan sandera sipil di atas segalanya dalam situasi perampokan.", punishmentType: "berat", punishmentText: "Pertama: Skorsing divisi negosiasi. Kedua: Pemecatan dari faksi." },
+                    { number: "Pasal 19", title: "Larangan Toxic Behavior di Radio Departemen", desc: "Setiap anggota wajib menjaga sopan santun dan etika profesional saat berkomunikasi menggunakan radio walkie-talkie faksi.", punishmentType: "ringan", punishmentText: "Pertama: Mute radio faksi 24 jam. Kedua: Skorsing tugas." },
+                    { number: "Pasal 20", title: "Kepatuhan Mutlak Pada Perintah High Command", desc: "Setiap anggota wajib mematuhi perintah sah dari atasan (Captain/Chief) selama bertugas di lapangan demi menjaga rantai komando.", punishmentType: "sedang", punishmentText: "Pertama: Skorsing tugas 3 hari. Kedua: Pemecatan tidak hormat." }
                 ]
-            },
+            }
+        ];
+
+        const safdRulesData = [
             {
-                chapter: "KODE ETIK & BREAKRULES SAFD (SAN ANDREAS FIRE DEPARTMENT)",
+                chapter: "KODE ETIK & BREAKRULES SAFD (20 PASAL)",
                 id: "faction-safd",
                 articles: [
-                    {
-                        number: "Pasal 6 (SAFD)",
-                        title: "Prioritas Netralitas & Larangan Memihak Konflik",
-                        desc: "Paramedis/Firefighter SAFD wajib bersifat netral mutlak dalam konflik bersenjata antara geng atau polisi vs kriminal. SAFD wajib merawat siapa saja yang terluka tanpa diskriminasi.",
-                        punishmentType: "berat",
-                        punishmentText: "Pertama: Skorsing tugas SAFD + Jail OOC (45 menit). Kedua: Pemecatan permanen dari faksi medis."
-                    },
-                    {
-                        number: "Pasal 7 (SAFD)",
-                        title: "Penyalahgunaan Kendaraan Medis & Peralatan Darurat",
-                        desc: "Dilarang menggunakan Ambulans atau Fire Truck untuk keperluan pribadi, konvoi ilegal, atau membawa barang-barang selundupan ilegal.",
-                        punishmentType: "sedang",
-                        punishmentText: "Pertama: Sanksi internal faksi & Jail OOC (30 menit). Kedua: Faction Kick dari SAFD."
-                    },
-                    {
-                        number: "Pasal 8 (SAFD)",
-                        title: "Roleplay Medis Realistis (/me & /do)",
-                        desc: "Setiap tindakan medis darurat wajib menggunakan command RP penyembuhan yang realistis dan sesuai prosedur kedokteran darurat in-game.",
-                        punishmentType: "ringan",
-                        punishmentText: "Pertama: Peringatan lisan oleh Instruktur SAFD / Admin. Kedua: Skorsing tugas sementara."
-                    },
-                    {
-                        number: "Pasal 9 (SAFD)",
-                        title: "Respon Darurat & Sirene Palsu (False Alarm)",
-                        desc: "Dilarang menyalakan sirene darurat kendaraan medis saat tidak sedang dalam misi penyelamatan atau panggilan darurat aktif (Dispatched Call).",
-                        punishmentType: "ringan",
-                        punishmentText: "Pertama: Peringatan lisan internal. Kedua: Pencabutan izin operasional kendaraan dinas."
-                    },
-                    {
-                        number: "Pasal 10 (SAFD)",
-                        title: "Sertifikasi Bedah & Prosedur Operasi Berat",
-                        desc: "Tindakan operasi bedah besar atau otopsi hanya boleh dilakukan oleh tenaga medis SAFD yang memiliki pangkat dan sertifikasi spesialis yang sah.",
-                        punishmentType: "sedang",
-                        punishmentText: "Pertama: Skorsing tugas medis 3 hari. Kedua: Penurunan pangkat (Demotion) in-game."
-                    }
+                    { number: "Pasal 1", title: "Prioritas Netralitas & Larangan Memihak Konflik", desc: "Paramedis/Firefighter SAFD wajib bersifat netral mutlak dalam konflik bersenjata antara geng atau polisi vs kriminal. SAFD wajib merawat siapa saja yang terluka tanpa diskriminasi.", punishmentType: "berat", punishmentText: "Pertama: Skorsing tugas SAFD + Jail OOC (45 menit). Kedua: Pemecatan permanen dari faksi medis." },
+                    { number: "Pasal 2", title: "Penyalahgunaan Kendaraan Medis & Peralatan Darurat", desc: "Dilarang menggunakan Ambulans atau Fire Truck untuk keperluan pribadi, konvoi ilegal, atau membawa barang-barang selundupan ilegal.", punishmentType: "sedang", punishmentText: "Pertama: Sanksi internal faksi & Jail OOC (30 menit). Kedua: Faction Kick dari SAFD." },
+                    { number: "Pasal 3", title: "Roleplay Medis Realistis (/me & /do)", desc: "Setiap tindakan medis darurat wajib menggunakan command RP penyembuhan yang realistis dan sesuai prosedur kedokteran darurat in-game.", punishmentType: "ringan", punishmentText: "Pertama: Peringatan lisan oleh Instruktur SAFD / Admin. Kedua: Skorsing tugas sementara." },
+                    { number: "Pasal 4", title: "Respon Darurat & Sirene Palsu (False Alarm)", desc: "Dilarang menyalakan sirene darurat kendaraan medis saat tidak sedang dalam misi penyelamatan atau panggilan darurat aktif (Dispatched Call).", punishmentType: "ringan", punishmentText: "Pertama: Peringatan lisan internal. Kedua: Pencabutan izin operasional kendaraan dinas." },
+                    { number: "Pasal 5", title: "Sertifikasi Bedah & Prosedur Operasi Berat", desc: "Tindakan operasi bedah besar atau otopsi hanya boleh dilakukan oleh tenaga medis SAFD yang memiliki pangkat dan sertifikasi spesialis yang sah.", punishmentType: "sedang", punishmentText: "Pertama: Skorsing tugas medis 3 hari. Kedua: Penurunan pangkat (Demotion) in-game." },
+                    { number: "Pasal 6", title: "Larangan Menolak Pasien Berdasarkan Status Sosial/IC", desc: "Paramedis dilarang menolak memberikan pertolongan medis kepada seseorang hanya karena alasan kebencian pribadi atau latar belakang kriminal korban.", punishmentType: "berat", punishmentText: "Pertama: Faction Kick + Jail OOC (45 menit). Kedua: Temporary Ban (3 hari)." },
+                    { number: "Pasal 7", title: "Prosedur Evakuasi Korban Kebakaran & Bencana", desc: "Dalam situasi kebakaran besar atau bencana alam, personel SAFD wajib memimpin evakuasi warga sipil ke zona aman sebelum memadamkan api.", punishmentType: "sedang", punishmentText: "Pertama: Teguran internal faksi. Kedua: Skorsing tugas lapangan." },
+                    { number: "Pasal 8", title: "Penggunaan Obat-obatan Medis & Narkotika RS", desc: "Dilarang menyalahgunakan stok obat bius atau morfin rumah sakit untuk kepentingan non-medis atau diperjualbelikan di pasar gelap IC.", punishmentType: "berat", punishmentText: "Pertama: Faction Kick + Jail OOC (60 menit). Kedua: Permanent Ban." },
+                    { number: "Pasal 9", title: "Kewajiban Pengisian Laporan Rekam Medis (PCR Report)", desc: "Setiap tindakan penanganan pasien kritis wajib dilaporkan ke dalam arsip rekam medis rumah sakit di forum resmi atau Discord faksi.", punishmentType: "ringan", punishmentText: "Pertama: Teguran tertulis. Kedua: Penundaan kenaikan pangkat." },
+                    { number: "Pasal 10", title: "Larangan Membawa Senjata Api Berbahaya Saat Dinas", desc: "Tenaga medis SAFD dilarang membawa atau menggunakan senjata api laras panjang saat sedang mengenakan seragam dinas medis.", punishmentType: "sedang", punishmentText: "Pertama: Penyitaan senjata + Jail OOC (30 menit). Kedua: Faction Kick." },
+                    { number: "Pasal 11", title: "Standar Pemeriksaan Psikologis Personel Medis", desc: "Anggota SAFD wajib menjaga kestabilan mental karakter dan tidak boleh melakukan aksi gila atau bunuh diri yang melanggar norma medis.", punishmentType: "ringan", punishmentText: "Pertama: Konseling internal faksi. Kedua: Skorsing tugas." },
+                    { number: "Pasal 12", title: "Prosedur Pemeriksaan Mayat & Korban Tewas (Coroner Duty)", desc: "Penanganan korban tewas wajib dilakukan dengan koordinasi bersama pihak LSPD untuk memastikan tidak ada tindak pidana tersembunyi.", punishmentType: "ringan", punishmentText: "Pertama: Peringatan lisan oleh Chief Medical." },
+                    { number: "Pasal 13", title: "Etika Komunikasi di Rumah Sakit All Saints", desc: "Dilarang membuat keributan, berteriak, atau berkelahi di area fasilitas umum Rumah Sakit All Saints Los Santos.", punishmentType: "ringan", punishmentText: "Pertama: Denda IC & teguran lisan." },
+                    { number: "Pasal 14", title: "Larangan Kerja Sama dengan Sindikat Organ Ilegal", desc: "Paramedis dilarang terlibat dalam jaringan penjualan organ tubuh manusia ilegal atau praktik malpraktik terselubung.", punishmentType: "permanen", punishmentText: "Permanent Ban + Faction Wipe." },
+                    { number: "Pasal 15", title: "Kewajiban Mengikuti Pelatihan Medis Berkala", desc: "Seluruh anggota SAFD wajib mengikuti drill dan simulasi evakuasi darurat yang diadakan oleh instruktur rumah sakit secara rutin.", punishmentType: "ringan", punishmentText: "Pertama: Penundaan promosi pangkat." },
+                    { number: "Pasal 16", title: "Penggunaan Alat Pemadam Kebakaran & Hazmat Suit", desc: "Penggunaan pakaian pelindung kimia (Hazmat) wajib dikenakan saat menangani insiden kebocoran zat kimia berbahaya atau limbah beracun.", punishmentType: "sedang", punishmentText: "Pertama: Skorsing tugas lapangan 2 hari." },
+                    { number: "Pasal 17", title: "Larangan Meninggalkan Shift Tanpa Keterangan", desc: "Paramedis yang sedang bertugas on-duty dilarang meninggalkan rumah sakit atau pos darurat tanpa izin dari perwira piket.", punishmentType: "ringan", punishmentText: "Pertama: Surat peringatan faksi." },
+                    { number: "Pasal 18", title: "Standar Biaya Pengobatan Resmi Rumah Sakit", desc: "Penarikan biaya perawatan medis kepada pasien wajib mengikuti tarif resmi yang telah ditetapkan oleh Kementerian Kesehatan.", punishmentType: "sedang", punishmentText: "Pertama: Pengembalian dana pasien + Skorsing." },
+                    { number: "Pasal 19", title: "Etika Profesionalisme Terhadap Rekan Kerja", desc: "Dilarang melakukan pelecehan verbal atau diskriminasi terhadap sesama tenaga medis di lingkungan Rumah Sakit Los Santos.", punishmentType: "sedang", punishmentText: "Pertama: Jail OOC (30 menit) + Faction Kick." },
+                    { number: "Pasal 20", title: "Kepatuhan Terhadap SOP Direktur Rumah Sakit", desc: "Setiap kebijakan operasional rumah sakit yang dikeluarkan oleh Direktur SAFD wajib dipatuhi oleh seluruh jajaran staf medis.", punishmentType: "ringan", punishmentText: "Pertama: Teguran tertulis. Kedua: Demosi jabatan." }
                 ]
-            },
+            }
+        ];
+
+        const sannewsRulesData = [
             {
-                chapter: "KODE ETIK & BREAKRULES SANNEWS (SAN ANDREAS NEWS)",
+                chapter: "KODE ETIK & BREAKRULES SANNEWS (20 PASAL)",
                 id: "faction-sannews",
                 articles: [
-                    {
-                        number: "Pasal 11 (SanNews)",
-                        title: "Akurasi Berita & Larangan Hoaks / Provokasi",
-                        desc: "Jurnalis SanNews dilarang menyebarkan berita palsu, informasi rahasia kepolisian yang sedang berjalan (active raid), atau berita yang memprovokasi kerusuhan massa.",
-                        punishmentType: "berat",
-                        punishmentText: "Pertama: Pencabutan lisensi jurnalis in-game + Jail OOC (45 menit). Kedua: Faction Kick + Temporary Ban (3 hari)."
-                    },
-                    {
-                        number: "Pasal 12 (SanNews)",
-                        title: "Penyalahgunaan Fitur Siaran Publik (Live Broadcast)",
-                        desc: "Dilarang menggunakan helikopter atau fasilitas siaran langsung untuk membocorkan posisi rahasia pihak lain demi keuntungan pribadi atau kelompok tertentu.",
-                        punishmentType: "sedang",
-                        punishmentText: "Pertama: Skorsing siaran selama 3 hari. Kedua: Pemecatan dari faksi SanNews."
-                    },
-                    {
-                        number: "Pasal 13 (SanNews)",
-                        title: "Etika Wawancara & Perlindungan Narsum",
-                        desc: "Wartawan wajib menghormati privasi narasumber dan dilarang mempublikasikan identitas informan rahasia tanpa izin tertulis atau persetujuan IC yang sah.",
-                        punishmentType: "ringan",
-                        punishmentText: "Pertama: Teguran tertulis oleh Pimpinan Redaksi. Kedua: Skorsing meliput berita selama 2 hari."
-                    },
-                    {
-                        number: "Pasal 14 (SanNews)",
-                        title: "Larangan Iklan Gelap & Sponsor Kriminal",
-                        desc: "Dilarang menerima bayaran IC/OOC dari sindikat kriminal untuk meloloskan iklan terselubung yang mempromosikan obat terlarang atau perdagangan senjata ilegal.",
-                        punishmentType: "berat",
-                        punishmentText: "Pertama: Faction Kick + Jail OOC (60 menit). Kedua: Temporary Ban (3 hari)."
-                    },
-                    {
-                        number: "Pasal 15 (SanNews)",
-                        title: "Netralitas Jurnalistik dalam Konflik Faksi",
-                        desc: "Tim liputan berita wajib menjaga posisi netral saat meliput baku tembak atau konflik antar faksi dan dilarang ikut serta membantu salah satu pihak yang bertikai.",
-                        punishmentType: "sedang",
-                        punishmentText: "Pertama: Penahanan peralatan liputan in-game. Kedua: Skorsing tugas jurnalis."
-                    }
+                    { number: "Pasal 1", title: "Akurasi Berita & Larangan Hoaks / Provokasi", desc: "Jurnalis SanNews dilarang menyebarkan berita palsu, informasi rahasia kepolisian yang sedang berjalan (active raid), atau berita yang memprovokasi kerusuhan massa.", punishmentType: "berat", punishmentText: "Pertama: Pencabutan lisensi jurnalis in-game + Jail OOC (45 menit). Kedua: Faction Kick + Temporary Ban (3 hari)." },
+                    { number: "Pasal 2", title: "Penyalahgunaan Fitur Siaran Publik (Live Broadcast)", desc: "Dilarang menggunakan helikopter atau fasilitas siaran langsung untuk membocorkan posisi rahasia pihak lain demi keuntungan pribadi atau kelompok tertentu.", punishmentType: "sedang", punishmentText: "Pertama: Skorsing siaran selama 3 hari. Kedua: Pemecatan dari faksi SanNews." },
+                    { number: "Pasal 3", title: "Etika Wawancara & Perlindungan Narsum", desc: "Wartawan wajib menghormati privasi narasumber dan dilarang mempublikasikan identitas informan rahasia tanpa izin tertulis atau persetujuan IC yang sah.", punishmentType: "ringan", punishmentText: "Pertama: Teguran tertulis oleh Pimpinan Redaksi. Kedua: Skorsing meliput berita selama 2 hari." },
+                    { number: "Pasal 4", title: "Larangan Iklan Gelap & Sponsor Kriminal", desc: "Dilarang menerima bayaran IC/OOC dari sindikat kriminal untuk meloloskan iklan terselubung yang mempromosikan obat terlarang atau perdagangan senjata ilegal.", punishmentType: "berat", punishmentText: "Pertama: Faction Kick + Jail OOC (60 menit). Kedua: Temporary Ban (3 hari)." },
+                    { number: "Pasal 5", title: "Netralitas Jurnalistik dalam Konflik Faksi", desc: "Tim liputan berita wajib menjaga posisi netral saat meliput baku tembak atau konflik antar faksi dan dilarang ikut serta membantu salah satu pihak yang bertikai.", punishmentType: "sedang", punishmentText: "Pertama: Penahanan peralatan liputan in-game. Kedua: Skorsing tugas jurnalis." },
+                    { number: "Pasal 6", title: "Ketentuan Penggunaan Command Iklan (/ad) Publik", desc: "Setiap iklan komersial yang diposting ke publik melalui kantor berita wajib disaring agar tidak mengandung unsur sara, pornografi, atau penipuan terang-terangan.", punishmentType: "ringan", punishmentText: "Pertama: Pembatalan iklan + Teguran lisan." },
+                    { number: "Pasal 7", title: "Larangan Plagiat Artikel & Berita Media Lain", desc: "Jurnalis dilarang menyalin mentah-mentah hasil investigasi atau publikasi jurnalistik tanpa mencantumkan sumber resmi di dalam dunia pers San Andreas.", punishmentType: "ringan", punishmentText: "Pertama: Peringatan internal editor." },
+                    { number: "Pasal 8", title: "Standar Keselamatan Zona Perang (War Zone Reporting)", desc: "Jurnalis yang meliput area konflik wajib mengenakan atribut press vest yang jelas dan menghindari titik tembak aktif demi keselamatan karakter.", punishmentType: "ringan", punishmentText: "Pertama: Teguran keselamatan kerja." },
+                    { number: "Pasal 9", title: "Penyalahgunaan Fasilitas Kantor Berita SanNews", desc: "Dilarang menggunakan studio siaran SanNews untuk kepentingan pribadi, pesta privat, atau aktivitas di luar penyiaran pers.", punishmentType: "sedang", punishmentText: "Pertama: Skorsing fasilitas studio 3 hari." },
+                    { number: "Pasal 10", title: "Kewajiban Verifikasi Fakta Sebelum Publikasi", desc: "Sebelum menyiarkan breaking news di seluruh kota, redaktur wajib memverifikasi kebenaran informasi melalui instansi terkait (LSPD/Gov).", punishmentType: "ringan", punishmentText: "Pertama: Ralat berita resmi & teguran." },
+                    { number: "Pasal 11", title: "Larangan Pencemaran Nama Baik Tanpa Bukti", desc: "Dilarang menyiarkan berita fitnah yang menjatuhkan reputasi seseorang atau perusahaan tanpa bukti otentik yang dapat dipertanggungjawabkan secara IC.", punishmentType: "sedang", punishmentText: "Pertama: Denda ganti rugi IC + Skorsing." },
+                    { number: "Pasal 12", title: "Standar Profesionalisme Penyiaran Radio & TV", desc: "Bahasa yang digunakan saat siaran publik wajib menggunakan bahasa Indonesia yang baik, benar, dan sesuai norma kesusilaan.", punishmentType: "ringan", punishmentText: "Pertama: Mute siaran 12 jam." },
+                    { number: "Pasal 13", title: "Larangan Menerima Suap untuk Bungkam Berita", desc: "Wartawan dilarang menerima sogokan uang IC agar kasus kejahatan seseorang tidak dipublikasikan ke media massa.", punishmentType: "berat", punishmentText: "Pertama: Faction Kick + Jail OOC (45 menit)." },
+                    { number: "Pasal 14", title: "Ketentuan Kepemilikan Lisensi Pers Sah", desc: "Hanya jurnalis yang terdaftar resmi di struktur SanNews yang berhak menggunakan command khusus penyiaran berita kota.", punishmentType: "sedang", punishmentText: "Pertama: Pencabutan akses command pers." },
+                    { number: "Pasal 15", title: "Etika Wawancara Pejabat Tinggi Negara", desc: "Wawancara dengan pejabat tinggi pemerintah wajib dijadwalkan melalui protokol kehumasan resmi instansi terkait.", punishmentType: "ringan", punishmentText: "Pertama: Pembatalan jadwal wawancara." },
+                    { number: "Pasal 16", title: "Larangan Propaganda Politik Gelap", desc: "SanNews dilarang menjadi alat kampanye hitam (black campaign) bagi kandidat pemilu pemerintah yang melanggar batas etika pemilu.", punishmentType: "berat", punishmentText: "Pertama: Faction Kick + Temporary Ban (3 hari)." },
+                    { number: "Pasal 17", title: "Kewajiban Mengikuti Rapat Redaksi Mingguan", desc: "Seluruh staf redaksi wajib berpartisipasi dalam perencanaan topik berita mingguan yang diadakan oleh Pemimpin Redaksi.", punishmentType: "ringan", punishmentText: "Pertama: Surat peringatan internal." },
+                    { number: "Pasal 18", title: "Larangan Membawa Senjata Ilegal di Studio Pers", desc: "Dilarang membawa senjata api ilegal atau barang terlarang ke dalam gedung utama studio penyiaran SanNews Los Santos.", punishmentType: "sedang", punishmentText: "Pertama: Penyitaan barang + Skorsing tugas." },
+                    { number: "Pasal 19", title: "Ketentuan Hak Jawab Narasumber", desc: "Pihak yang merasa dirugikan oleh pemberitaan berhak mendapatkan ruang hak jawab resmi yang difasilitasi oleh kantor berita SanNews.", punishmentType: "ringan", punishmentText: "Pertama: Kewajiban ralat berita." },
+                    { number: "Pasal 20", title: "Loyalitas Terhadap Kode Etik Jurnalistik SanNews", desc: "Seluruh personel wajib menjunjung tinggi independensi, objektivitas, dan kredibilitas pers San Andreas.", punishmentType: "sedang", punishmentText: "Pertama: Pemecatan dari faksi." }
                 ]
-            },
+            }
+        ];
+
+        const govRulesData = [
             {
-                chapter: "KODE ETIK & BREAKRULES PEMERINTAHAN (GOVERNMENT)",
+                chapter: "KODE ETIK & BREAKRULES PEMERINTAHAN (20 PASAL)",
                 id: "faction-gov",
                 articles: [
-                    {
-                        number: "Pasal 16 (Gov)",
-                        title: "Integritas Kebijakan & Penyalahgunaan Anggaran Kota",
-                        desc: "Pejabat Pemerintahan (Walikota, Menteri, Hakim) dilarang melakukan penyalahgunaan anggaran negara, korupsi kebijakan tanpa regulasi forum, atau mengeluarkan dekrit sepihak.",
-                        punishmentType: "berat",
-                        punishmentText: "Pertama: Pemecatan jabatan pemerintahan instan + Rollback kebijakan. Kedua: Temporary Ban (7 hari)."
-                    },
-                    {
-                        number: "Pasal 17 (Gov)",
-                        title: "Ketentuan Sidang Pengadilan & Keputusan Hukum",
-                        desc: "Proses peradilan hukum wajib berjalan secara IC dengan bukti valid. Dilarang melakukan intervensi OOC dalam keputusan vonis hakim.",
-                        punishmentType: "sedang",
-                        punishmentText: "Pertama: Pembatalan keputusan sidang & Jail OOC (45 menit). Kedua: Pencabutan lisensi hukum / jabatan."
-                    },
-                    {
-                        number: "Pasal 18 (Gov)",
-                        title: "Penerbitan Lisensi Resmi (Gun, Business, & Driving)",
-                        desc: "Pemberian lisensi senjata atau izin usaha oleh pejabat pemerintah wajib melalui tes uji kompetensi IC yang ketat dan transparan. Dilarang menerbitkan lisensi jalur orang dalam (nepotisme).",
-                        punishmentType: "berat",
-                        punishmentText: "Pertama: Pencabutan status pejabat + Jail OOC (60 menit). Kedua: Temporary Ban (3 hari)."
-                    },
-                    {
-                        number: "Pasal 19 (Gov)",
-                        title: "Immunitas Jabatan & Batasan Hukum Pejabat",
-                        desc: "Pejabat tinggi kota memiliki imunitas terbatas yang hanya berlaku selama menjalankan tugas resmi kedinasan. Dilarang menggunakan status jabatan untuk kebal hukum saat melakukan kejahatan.",
-                        punishmentType: "berat",
-                        punishmentText: "Pertama: Pencabutan hak kekebalan hukum + penahanan IC. Kedua: Pemecatan tidak hormat."
-                    },
-                    {
-                        number: "Pasal 20 (Gov)",
-                        title: "Kepatuhan Terhadap Konstitusi Server Kalunasera",
-                        desc: "Seluruh regulasi internal faksi Pemerintahan wajib tunduk di bawah Kitab Undang-Undang Utama Kalunasera Roleplay dan tidak boleh bertentangan dengan aturan dasar server.",
-                        punishmentType: "permanen",
-                        punishmentText: "Pertama: Pembekuan faksi Pemerintahan sementara. Kedua: Faction Wipe total oleh High Administration."
-                    }
+                    { number: "Pasal 1", title: "Integritas Kebijakan & Penyalahgunaan Anggaran Kota", desc: "Pejabat Pemerintahan (Walikota, Menteri, Hakim) dilarang melakukan penyalahgunaan anggaran negara, korupsi kebijakan tanpa regulasi forum, atau mengeluarkan dekrit sepihak.", punishmentType: "berat", punishmentText: "Pertama: Pemecatan jabatan pemerintahan instan + Rollback kebijakan. Kedua: Temporary Ban (7 hari)." },
+                    { number: "Pasal 2", title: "Ketentuan Sidang Pengadilan & Keputusan Hukum", desc: "Proses peradilan hukum wajib berjalan secara IC dengan bukti valid. Dilarang melakukan intervensi OOC dalam keputusan vonis hakim.", punishmentType: "sedang", punishmentText: "Pertama: Pembatalan keputusan sidang & Jail OOC (45 menit). Kedua: Pencabutan lisensi hukum / jabatan." },
+                    { number: "Pasal 3", title: "Penerbitan Lisensi Resmi (Gun, Business, & Driving)", desc: "Pemberian lisensi senjata atau izin usaha oleh pejabat pemerintah wajib melalui tes uji kompetensi IC yang ketat dan transparan. Dilarang menerbitkan lisensi jalur orang dalam (nepotisme).", punishmentType: "berat", punishmentText: "Pertama: Pencabutan status pejabat + Jail OOC (60 menit). Kedua: Temporary Ban (3 hari)." },
+                    { number: "Pasal 4", title: "Immunitas Jabatan & Batasan Hukum Pejabat", desc: "Pejabat tinggi kota memiliki imunitas terbatas yang hanya berlaku selama menjalankan tugas resmi kedinasan. Dilarang menggunakan status jabatan untuk kebal hukum saat melakukan kejahatan.", punishmentType: "berat", punishmentText: "Pertama: Pencabutan hak kekebalan hukum + penahanan IC. Kedua: Pemecatan tidak hormat." },
+                    { number: "Pasal 5", title: "Kepatuhan Terhadap Konstitusi Server Kalunasera", desc: "Seluruh regulasi internal faksi Pemerintahan wajib tunduk di bawah Kitab Undang-Undang Utama Kalunasera Roleplay dan tidak boleh bertentangan dengan aturan dasar server.", punishmentType: "permanen", punishmentText: "Pertama: Pembekuan faksi Pemerintahan sementara. Kedua: Faction Wipe total oleh High Administration." },
+                    { number: "Pasal 6", title: "Transparansi Tender Proyek Pembangunan Kota", desc: "Setiap lelang proyek fasilitas umum atau pengadaan barang pemerintah wajib dilakukan secara terbuka dan akuntabel kepada publik.", punishmentType: "sedang", punishmentText: "Pertama: Pembatalan tender + Skorsing pejabat terkait." },
+                    { number: "Pasal 7", title: "Larangan Nepotisme dalam Penempatan Jabatan Publik", desc: "Pengangkatan staf ahli atau kepala dinas pemerintahan wajib berdasarkan meritokrasi dan tes seleksi, bukan hubungan kekerabatan OOC.", punishmentType: "berat", punishmentText: "Pertama: Pembatalan SK pengangkatan + Faction Kick." },
+                    { number: "Pasal 8", title: "Standar Pelayanan Publik Balai Kota (City Hall)", desc: "Petugas administrasi balai kota wajib melayani warga dengan sopan dan profesional dalam pengurusan paspor, KTP, atau izin dokumen kota.", punishmentType: "ringan", punishmentText: "Pertama: Teguran lisan oleh Sekda." },
+                    { number: "Pasal 9", title: "Larangan Rangkap Jabatan Eksekutif & Yudikatif", desc: "Seorang pejabat di lembaga eksekutif (pemerintahan kota) dilarang merangkap jabatan sebagai hakim di lembaga yudikatif demi menghindari konflik kepentingan.", punishmentType: "berat", punishmentText: "Pertama: Pemecatan dari salah satu jabatan." },
+                    { number: "Pasal 10", title: "Ketentuan Pelaksanaan Pemilihan Umum (Pilkada RP)", desc: "Proses pemilihan kepala daerah atau walikota wajib berjalan jurdil (jujur dan adil) sesuai jadwal pemilu resmi server.", punishmentType: "berat", punishmentText: "Pertama: Diskualifikasi kandidat + Temporary Ban (3 hari)." },
+                    { number: "Pasal 11", title: "Pengelolaan Kas Negara & Pajak Kota", desc: "Pajak kendaraan dan properti yang dikumpulkan dari warga wajib dikembalikan dalam bentuk fasilitas publik dan gaji faksi legal.", punishmentType: "berat", punishmentText: "Pertama: Rollback kas negara + Faction Wipe." },
+                    { number: "Pasal 12", title: "Larangan Keterlibatan Sindikat Mafia/Geng", desc: "Pejabat pemerintahan dilarang bersekutu secara diam-diam dengan pimpinan organisasi kriminal untuk meloloskan kegiatan pencucian uang.", punishmentType: "permanen", punishmentText: "Permanent Ban mutlak tanpa hak banding." },
+                    { number: "Pasal 13", title: "Standar Penulisan Surat Keputusan (SK) Resmi", desc: "Setiap undang-undang atau peraturan walikota wajib dipublikasikan secara resmi di forum kota agar diketahui oleh seluruh warga San Andreas.", punishmentType: "ringan", punishmentText: "Pertama: Pembatalan dekrit tidak resmi." },
+                    { number: "Pasal 14", title: "Etika Sidang Dewan Kota (City Council Meeting)", desc: "Perdebatan dalam rapat dewan kota wajib menjunjung tinggi etika demokrasi dan dilarang berujung pada aksi baku hantam fisik antar pejabat.", punishmentType: "sedang", punishmentText: "Pertama: Skorsing sidang & denda IC." },
+                    { number: "Pasal 15", title: "Prosedur Penggusuran Lahan & Properti Publik", desc: "Penggusuran bangunan atau pemindahan zona kota wajib melalui surat peringatan resmi dan sosialisasi kepada pemilik properti.", punishmentType: "sedang", punishmentText: "Pertama: Ganti rugi materiil IC kepada korban." },
+                    { number: "Pasal 16", title: "Kewajiban Pelaporan Harta Kekayaan Pejabat (LHKPN RP)", desc: "Pejabat tinggi wajib transparan terhadap kepemilikan aset mewah untuk membuktikan tidak ada aliran dana korupsi.", punishmentType: "sedang", punishmentText: "Pertama: Audit aset kota & penyitaan harta ilegal." },
+                    { number: "Pasal 17", title: "Larangan Menyalahgunakan Fasilitas Mobil Dinas Kenegaraan", desc: "Kendaraan plat nomor pemerintah (Gov) hanya boleh digunakan untuk urusan kedinasan kenegaraan, bukan liburan pribadi.", punishmentType: "ringan", punishmentText: "Pertama: Teguran lisan dan penyitaan kunci mobil." },
+                    { number: "Pasal 18", title: "Ketentuan Pemberian Grasi & Pengampunan Hukum", desc: "Pemberian grasi atau pengurangan masa tahanan oleh pejabat berwenang harus melalui pertimbangan hukum yang matang.", punishmentType: "berat", punishmentText: "Pertama: Pembatalan grasi & Faction Kick." },
+                    { number: "Pasal 19", title: "Pelayanan Pengaduan Masyarakat (Public Complaint)", desc: "Pemerintah wajib membuka saluran aspirasi bagi warga yang ingin melaporkan kinerja buruk instansi pelayanan publik.", punishmentType: "ringan", punishmentText: "Pertama: Teguran administratif." },
+                    { number: "Pasal 20", title: "Loyalitas Konstitusional Kepada Negara Kalunasera", desc: "Seluruh aparatur sipil negara wajib mengabdikan diri pada kemajuan kota dan kesejahteraan seluruh warga Kalunasera Roleplay.", punishmentType: "sedang", punishmentText: "Pertama: Pemecatan dari jajaran pemerintahan." }
                 ]
             }
         ];
 
         let activeMainTab = 'general'; // 'general' or 'faction'
+        let activeFactionTab = 'lspd'; // 'lspd', 'safd', 'sannews', 'gov'
         let currentFilter = 'all';
 
         function switchMainTab(tab) {
             activeMainTab = tab;
             const btnGeneral = document.getElementById('tab-btn-general');
             const btnFaction = document.getElementById('tab-btn-faction');
+            const factionSubtabs = document.getElementById('faction-subtabs-container');
             const headerBadge = document.getElementById('header-badge');
             const headerTitle = document.getElementById('header-title');
             const headerDesc = document.getElementById('header-desc');
@@ -732,25 +691,75 @@
             if (tab === 'general') {
                 btnGeneral.className = "px-3 py-2 rounded-lg text-xs font-mono font-bold text-black bg-cyber-neon transition-all shadow-md";
                 btnFaction.className = "px-3 py-2 rounded-lg text-xs font-mono font-bold text-gray-400 hover:text-white transition-all";
+                factionSubtabs.classList.add('hidden');
                 headerBadge.innerText = "Official Codex";
                 headerTitle.innerText = "Kitab Undang-Undang Breakrules Umum";
                 headerDesc.innerText = "Standar operasional tata tertib bermain dari Bab I hingga Bab XIII Kalunasera Roleplay.";
             } else {
                 btnFaction.className = "px-3 py-2 rounded-lg text-xs font-mono font-bold text-black bg-cyber-neon transition-all shadow-md";
                 btnGeneral.className = "px-3 py-2 rounded-lg text-xs font-mono font-bold text-gray-400 hover:text-white transition-all";
-                headerBadge.innerText = "Faction Regulations";
-                headerTitle.innerText = "Breakrules & SOP Faksi Resmi (LSPD, SAFD, SanNews, Gov)";
-                headerDesc.innerText = "20 Pasal komprehensif mengatur kode etik dan sanksi seluruh faksi legal & pemerintahan di Kalunasera RP.";
+                factionSubtabs.classList.remove('hidden');
+                updateFactionHeader();
             }
 
             renderSidebar();
             renderRules(currentFilter, document.getElementById('search-input').value);
         }
 
+        function switchFactionTab(faction) {
+            activeFactionTab = faction;
+            ['lspd', 'safd', 'sannews', 'gov'].forEach(f => {
+                const btn = document.getElementById(`sub-btn-${f}`);
+                if (f === faction) {
+                    btn.className = "px-2.5 py-1.5 rounded-lg text-[11px] font-mono font-bold bg-cyber-neon text-black transition-all shadow-sm";
+                } else {
+                    btn.className = "px-2.5 py-1.5 rounded-lg text-[11px] font-mono font-bold bg-cyber-800 text-gray-400 hover:text-white transition-all";
+                }
+            });
+            updateFactionHeader();
+            renderSidebar();
+            renderRules(currentFilter, document.getElementById('search-input').value);
+        }
+
+        function updateFactionHeader() {
+            const headerBadge = document.getElementById('header-badge');
+            const headerTitle = document.getElementById('header-title');
+            const headerDesc = document.getElementById('header-desc');
+
+            headerBadge.innerText = "Faction SOP & Breakrules";
+            switch(activeFactionTab) {
+                case 'lspd':
+                    headerTitle.innerText = "Breakrules & SOP LSPD (20 Pasal Lengkap)";
+                    headerDesc.innerText = "Regulasi ketat penegakan hukum, taktik patroli, dan kode etik anggota Los Santos Police Department.";
+                    break;
+                case 'safd':
+                    headerTitle.innerText = "Breakrules & SOP SAFD (20 Pasal Lengkap)";
+                    headerDesc.innerText = "Standar operasional medis darurat, pemadam kebakaran, dan netralitas paramedis San Andreas.";
+                    break;
+                case 'sannews':
+                    headerTitle.innerText = "Breakrules & SOP SanNews (20 Pasal Lengkap)";
+                    headerDesc.innerText = "Kode etik jurnalistik pers, ketentuan siaran publik, dan batasan penyiaran berita kota.";
+                    break;
+                case 'gov':
+                    headerTitle.innerText = "Breakrules & SOP Pemerintahan / Gov (20 Pasal Lengkap)";
+                    headerDesc.innerText = "Integritas pejabat eksekutif, yudikatif, peradilan hukum, dan tata tertib birokrasi negara.";
+                    break;
+            }
+        }
+
         function renderSidebar() {
             const nav = document.getElementById('chapter-nav');
             nav.innerHTML = '';
-            const dataset = (activeMainTab === 'general') ? generalRulesData : factionRulesData;
+            let dataset = [];
+
+            if (activeMainTab === 'general') {
+                dataset = generalRulesData;
+            } else {
+                if (activeFactionTab === 'lspd') dataset = lspdRulesData;
+                else if (activeFactionTab === 'safd') dataset = safdRulesData;
+                else if (activeFactionTab === 'sannews') dataset = sannewsRulesData;
+                else if (activeFactionTab === 'gov') dataset = govRulesData;
+            }
 
             dataset.forEach((chap, idx) => {
                 const a = document.createElement('a');
@@ -784,7 +793,16 @@
             const emptyState = document.getElementById('empty-state');
             container.innerHTML = '';
 
-            const dataset = (activeMainTab === 'general') ? generalRulesData : factionRulesData;
+            let dataset = [];
+            if (activeMainTab === 'general') {
+                dataset = generalRulesData;
+            } else {
+                if (activeFactionTab === 'lspd') dataset = lspdRulesData;
+                else if (activeFactionTab === 'safd') dataset = safdRulesData;
+                else if (activeFactionTab === 'sannews') dataset = sannewsRulesData;
+                else if (activeFactionTab === 'gov') dataset = govRulesData;
+            }
+
             let totalVisible = 0;
 
             dataset.forEach(chap => {
