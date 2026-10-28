@@ -77,16 +77,9 @@
                 </div>
             </div>
 
+            <!-- Hanya Menyisakan Tombol IP Server -->
             <div class="flex items-center space-x-3">
-                <div class="hidden sm:flex items-center space-x-2 bg-dark-700/60 border border-emerald-500/30 px-3.5 py-1.5 rounded-xl">
-                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-                    <span class="text-xs font-mono font-bold text-emerald-400">PING: <span id="server-ping">14ms</span></span>
-                </div>
-                <div class="flex items-center space-x-2 bg-dark-700/60 border border-cyan-500/30 px-3.5 py-1.5 rounded-xl">
-                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span>
-                    <span class="text-xs font-mono font-bold text-cyan-300">ONLINE: <span id="online-counter-display">0/500</span></span>
-                </div>
-                <button onclick="copyServerIp()" class="hidden md:inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white px-4 py-2 rounded-xl text-xs font-bold font-mono shadow-lg shadow-cyan-600/30 border border-cyan-400/40 transition-all">
+                <button onclick="copyServerIp()" class="inline-flex items-center space-x-2 bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500 text-white px-4 py-2.5 rounded-xl text-xs font-bold font-mono shadow-lg shadow-cyan-600/30 border border-cyan-400/40 transition-all">
                     <i class="fa-solid fa-server"></i>
                     <span id="ip-text">139.99.52.289:5083</span>
                 </button>
@@ -225,24 +218,6 @@
 
     <!-- Application Script -->
     <script>
-        // --- REAL-TIME SA-MP QUERY FETCHER (Disesuaikan untuk Port 0 player / HTTPS safe) ---
-        async function updateSampPlayerCount() {
-            try {
-                const ip = "139.99.52.289";
-                const port = "5083";
-                const response = await fetch(`https://samp.qe.ply.gg/query?ip=${ip}&port=${port}`);
-                const data = await response.json();
-                
-                if (data && typeof data.online !== 'undefined') {
-                    document.getElementById('online-counter-display').innerText = `${data.online}/${data.maxplayers || 500}`;
-                } else {
-                    document.getElementById('online-counter-display').innerText = `0/500`;
-                }
-            } catch (err) {
-                document.getElementById('online-counter-display').innerText = `0/500`;
-            }
-        }
-
         // --- DATA GENERAL RULES (BAB I - XIII) ---
         const generalRulesData = [
             {
@@ -415,7 +390,7 @@
         }
 
         // --- STATE MANAGEMENT ---
-        let currentMasterTab = 'general'; // 'general' or 'faction'
+        let currentMasterTab = 'general';
         let currentFaction = 'lspd';
         let currentFilter = 'all';
 
@@ -598,8 +573,6 @@
             switchRpTab('ic-ooc');
             renderSidebar();
             renderRules();
-            updateSampPlayerCount();
-            setInterval(updateSampPlayerCount, 30000);
         };
     </script>
 </body>
